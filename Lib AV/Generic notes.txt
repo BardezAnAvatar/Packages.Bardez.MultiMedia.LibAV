@@ -1,0 +1,135 @@
+
+AVFormat:
+1) prior to doing anything, register the codecs:
+	av_register_all();	//avformat.h @ 1129
+
+2) open a file:
+	const char    *url = "in.mp3";
+	AVFormatContext *s = NULL;
+	int ret = avformat_open_input(&s, url, NULL, NULL);	//avformat.h @ 1321
+	if (ret < 0)
+	    abort();
+
+3) optionally get format info:
+
+	//avformat.h @ 1367
+	int ret = avformat_find_stream_info(s, NULL);	//might not be null, but probably will be.
+
+4) examine the streams of the avformat:
+	AVCodecContext** codecContexts = new AVCodecContext*[s->nb_streams];	//get a codec for each stream
+
+	for (int 1 = 0; i < s->nb_streams; ++i)
+	{
+		//analyze the streams
+		if (s->streams[i]->codec->codec_type ==  whatever @avutil.h @ 230)
+		{
+			//rememer what stream # means what.
+			codecContexts[i] = s->streams[i]->codec;
+		}
+	}
+
+5) knowing what codec to look for (streams' codec has a pointer to it), actually load it:
+
+	AVCodec* ptrCodec =  avcodec_find_decoder(s->streams[i]->codec->codec_id);
+	if (ptrCodec == NULL)
+		//explode
+
+	//open codec;		avcodec.h @ 3376
+	int ret = avcodec_open2(codecContexts[i], ptrCodec, NULL);	//have you any option? no? NULL.
+
+
+6) allocate frame:
+
+	AVFrame* pFrame = avcodec_alloc_frame();	//avcodec.h @ 3297
+
+
+7) neat, let libavcodec convert my output format:
+	
+	AVFrame* pFrameRGB = avcodec_alloc_frame();	//avcodec.h @ 3297
+	int numBytes = avpicture_get_Size(PIX_FMT_BGRA, codecContexts[i]->width, codecContexts[i]->height);	//avcodec.h @ 4253; pixfmt.h @ 95
+	uint8_t* buffer= av_malloc(numBytes * sizeof(uint8_t));	//mem.h @ 80
+
+
+8) tie RGB frame to the buffer
+	
+	//AVFrame is a superset of AVPicture
+	//avcodec.h @ 4220
+	avpicture_fill( reinterpret_cast<AVPicture*>(pFrameRGB), buffer, PIX_FMT_BGRA, codecContexts[i]->width, codecContexts[i]->height ); 
+
+
+9) read data in a big-ish loop
+	
+	int frameFinished;
+	AVPacket packet;
+
+	while (av_read_Frame(s, &packet) > -1) //avformat.h @ 1454
+	{
+		//check the packet's stream index, be it audio or video or whatever
+		if (packet.stream_index == i)	//video
+		{
+			//decode
+			//avcodec.h @ 3697
+			avcodec_decode_video2(codecContexts[i], pFrame, &frameFinished, &packet);
+		}
+		else	//audio, for example
+		{
+			//avcodec.h @ 3653
+			int ret = avcodec_decode_audio4(codecContexts[i], pFrame, &frameFinished, &packet );
+		}
+
+		//convert the frame's picture
+		if (frameFinished != 0)
+		{
+			/****************************
+			*	Convert the color space	*
+			****************************/
+			struct SwsContext *img_convert_ctx;
+			
+			// Convert the image into YUV
+			if(img_convert_ctx == NULL)
+			{
+				int w = pCodecCtx->width;
+				int h = pCodecCtx->height;
+					
+				//swscale.h @ 205
+				img_convert_ctx = sws_getContext(w, h, pCodecCtx->pix_fmt, 
+												w, h, PIX_FMT_RGB24,
+												SWS_BICUBIC, NULL, NULL, NULL);
+
+				if(img_convert_ctx == NULL)
+				{
+					fprintf(stderr, "Cannot initialize the conversion context!\n");
+					exit(1);
+				}
+			}
+
+			//swscale.h @ 237
+			int ret = sws_scale(img_convert_ctx, pFrame->data, pFrame->linesize, 0, 
+						pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
+			/********************************
+			*	End Convert the color space	*
+			********************************/
+		
+			//get your output here
+			//do something with pFrame->data
+		}
+		
+
+
+		
+		//free the packet
+		av_free_packet(&packet);	//avcodec.h @ 3459
+	}
+
+10) do cleanup:
+
+	//mem.h @ 114
+	av_free(buffer);
+	av_free(pFrameRGB);
+	av_free(pFrame);
+
+	//avcodec.h @ 3387
+	avcodec_close(codecContexts[i]);
+
+	av_close_input_file(s);
+	

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\libavformat">
+      <UniqueIdentifier>{16ca9086-0b38-4905-b34b-fc61f1a85ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavutil">
+      <UniqueIdentifier>{9d1cd416-bd22-46c7-a388-e5b2c7ac962a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavcodec">
+      <UniqueIdentifier>{78413dd8-e57b-494e-be1c-4a4a80cfa45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libswscale">
+      <UniqueIdentifier>{96e516dc-62d8-4855-83df-88d2236ef8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wrapper">
+      <UniqueIdentifier>{7d1a2790-b867-4314-8e76-f0e21f47a28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wrapper\Components">
+      <UniqueIdentifier>{0acf8362-0634-4a43-a36d-ba56743b8458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Wrapper\Enums">
+      <UniqueIdentifier>{edcd03c4-33b7-4190-9e8e-fb840fb560fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Wrapper">
+      <UniqueIdentifier>{96e58d88-a178-4232-916a-8052e7c442eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Wrapper\Components">
+      <UniqueIdentifier>{529602b4-c579-4c79-ae8e-a84bcd7beab3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libavformat\avformat.h">
+      <Filter>Header Files\libavformat</Filter>
+    </ClInclude>
+    <ClInclude Include="libavformat\avio.h">
+      <Filter>Header Files\libavformat</Filter>
+    </ClInclude>
+    <ClInclude Include="libavformat\version.h">
+      <Filter>Header Files\libavformat</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\adler32.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\aes.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\attributes.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\audioconvert.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\avassert.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\avconfig.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\avstring.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\avutil.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\base64.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\bprint.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\bswap.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\common.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\cpu.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\crc.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\dict.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\error.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\eval.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\fifo.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\file.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\imgutils.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\intfloat.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\intfloat_readwrite.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\intreadwrite.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\lfg.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\log.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\lzo.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\mathematics.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\md5.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\mem.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\opt.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\parseutils.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\pixdesc.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\pixfmt.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\random_seed.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\rational.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\samplefmt.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\sha.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\timecode.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavutil\timestamp.h">
+      <Filter>Header Files\libavutil</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\avcodec.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\avfft.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\dxva2.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\vaapi.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\vda.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\vdpau.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\version.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libavcodec\xvmc.h">
+      <Filter>Header Files\libavcodec</Filter>
+    </ClInclude>
+    <ClInclude Include="libswscale\swscale.h">
+      <Filter>Header Files\libswscale</Filter>
+    </ClInclude>
+    <ClInclude Include="Library References.h">
+      <Filter>Header Files\Wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Pixel Format.h">
+      <Filter>Header Files\Wrapper\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Picture.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Error Helper.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Media Type.h">
+      <Filter>Header Files\Wrapper\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream Processing Info.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec ID.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Codec Info.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Container.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame Audio Int16.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame AV.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame BGRA.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rational.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream Info.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream Processing Buffer.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Stream Buffers.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio Sample Format.h">
+      <Filter>Header Files\Wrapper\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="SW Scale.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Resize Options.h">
+      <Filter>Header Files\Wrapper\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Picture Detail.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Generic notes.txt">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LibAV Picture.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Codec Info.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream Processing Info.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Container.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame Audio Int16.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame AV.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame BGRA.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream Buffers.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream Info.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Stream Processing Buffer.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SW Scale.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

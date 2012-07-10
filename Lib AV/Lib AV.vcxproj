@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1F9B2E1A-E000-4076-8D38-D995A6A3922C}</ProjectGuid>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Keyword>ManagedCProj</Keyword>
+    <RootNamespace>LibAV</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CLRSupport>true</CLRSupport>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\$(Configuration)\</OutDir>
+    <IntDir>tmp\$(Configuration)\</IntDir>
+    <LibraryPath>N:\Code\Video\ffmpeg\lib;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
+    <IncludePath>\Code\Video\msinttypes-r26;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Xdcmake>
+      <DocumentLibraryDependencies>true</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Audio Sample Format.h" />
+    <ClInclude Include="Codec ID.h" />
+    <ClInclude Include="Codec Info.h" />
+    <ClInclude Include="Container.h" />
+    <ClInclude Include="Error Helper.h" />
+    <ClInclude Include="Frame Audio Int16.h" />
+    <ClInclude Include="Frame AV.h" />
+    <ClInclude Include="Frame BGRA.h" />
+    <ClInclude Include="LibAV Picture.h" />
+    <ClInclude Include="libavcodec\avcodec.h" />
+    <ClInclude Include="libavcodec\avfft.h" />
+    <ClInclude Include="libavcodec\dxva2.h" />
+    <ClInclude Include="libavcodec\vaapi.h" />
+    <ClInclude Include="libavcodec\vda.h" />
+    <ClInclude Include="libavcodec\vdpau.h" />
+    <ClInclude Include="libavcodec\version.h" />
+    <ClInclude Include="libavcodec\xvmc.h" />
+    <ClInclude Include="libavformat\avformat.h" />
+    <ClInclude Include="libavformat\avio.h" />
+    <ClInclude Include="libavformat\version.h" />
+    <ClInclude Include="libavutil\adler32.h" />
+    <ClInclude Include="libavutil\aes.h" />
+    <ClInclude Include="libavutil\attributes.h" />
+    <ClInclude Include="libavutil\audioconvert.h" />
+    <ClInclude Include="libavutil\avassert.h" />
+    <ClInclude Include="libavutil\avconfig.h" />
+    <ClInclude Include="libavutil\avstring.h" />
+    <ClInclude Include="libavutil\avutil.h" />
+    <ClInclude Include="libavutil\base64.h" />
+    <ClInclude Include="libavutil\bprint.h" />
+    <ClInclude Include="libavutil\bswap.h" />
+    <ClInclude Include="libavutil\common.h" />
+    <ClInclude Include="libavutil\cpu.h" />
+    <ClInclude Include="libavutil\crc.h" />
+    <ClInclude Include="libavutil\dict.h" />
+    <ClInclude Include="libavutil\error.h" />
+    <ClInclude Include="libavutil\eval.h" />
+    <ClInclude Include="libavutil\fifo.h" />
+    <ClInclude Include="libavutil\file.h" />
+    <ClInclude Include="libavutil\imgutils.h" />
+    <ClInclude Include="libavutil\intfloat.h" />
+    <ClInclude Include="libavutil\intfloat_readwrite.h" />
+    <ClInclude Include="libavutil\intreadwrite.h" />
+    <ClInclude Include="libavutil\lfg.h" />
+    <ClInclude Include="libavutil\log.h" />
+    <ClInclude Include="libavutil\lzo.h" />
+    <ClInclude Include="libavutil\mathematics.h" />
+    <ClInclude Include="libavutil\md5.h" />
+    <ClInclude Include="libavutil\mem.h" />
+    <ClInclude Include="libavutil\opt.h" />
+    <ClInclude Include="libavutil\parseutils.h" />
+    <ClInclude Include="libavutil\pixdesc.h" />
+    <ClInclude Include="libavutil\pixfmt.h" />
+    <ClInclude Include="libavutil\random_seed.h" />
+    <ClInclude Include="libavutil\rational.h" />
+    <ClInclude Include="libavutil\samplefmt.h" />
+    <ClInclude Include="libavutil\sha.h" />
+    <ClInclude Include="libavutil\timecode.h" />
+    <ClInclude Include="libavutil\timestamp.h" />
+    <ClInclude Include="Library References.h" />
+    <ClInclude Include="libswscale\swscale.h" />
+    <ClInclude Include="LibAV Pixel Format.h" />
+    <ClInclude Include="Media Type.h" />
+    <ClInclude Include="Rational.h" />
+    <ClInclude Include="Resize Options.h" />
+    <ClInclude Include="Stream Buffers.h" />
+    <ClInclude Include="Stream Info.h" />
+    <ClInclude Include="Stream Processing Buffer.h" />
+    <ClInclude Include="Stream Processing Info.h" />
+    <ClInclude Include="LibAV Picture Detail.h" />
+    <ClInclude Include="SW Scale.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Generic notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Codec Info.cpp" />
+    <ClCompile Include="Container.cpp" />
+    <ClCompile Include="Frame Audio Int16.cpp" />
+    <ClCompile Include="Frame AV.cpp" />
+    <ClCompile Include="Frame BGRA.cpp" />
+    <ClCompile Include="LibAV Picture.cpp" />
+    <ClCompile Include="Stream Buffers.cpp" />
+    <ClCompile Include="Stream Info.cpp" />
+    <ClCompile Include="Stream Processing Buffer.cpp" />
+    <ClCompile Include="Stream Processing Info.cpp" />
+    <ClCompile Include="SW Scale.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
