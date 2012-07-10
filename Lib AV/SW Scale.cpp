@@ -2,7 +2,9 @@
 
 #include "SW Scale.h"
 
+
 using namespace System;
+using namespace System::IO;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -85,5 +87,31 @@ Int32 SWScale::Transform(LibAVPicture^ source, LibAVPicture^ destination)
 	return sws_scale(	this->SWS_Context, source->PicturePtr->data,
 						source->PicturePtr->linesize, 0, source->Detail.Height,
 						destination->PicturePtr->data, destination->PicturePtr->linesize	);
+}
+
+/// <summary>Performs the constructed SW Scale transformation associated with this context</summary>
+/// <param name="sourceData">Source data to read from</summary>
+/// <param name="destData">Destination Stream to write data to</summary>
+/// <returns>The height of the output image</returns>
+Int32 SWScale::Transform(MemoryStream^ sourceData, [System::Runtime::InteropServices::Out] MemoryStream^% destData)
+{
+	LibAVPicture^ source = LibAVPicture::BuildPicture(this->detailSource);
+	LibAVPicture^ destination = LibAVPicture::BuildPicture(this->detailDestination);
+
+	source->Data = sourceData;
+
+	
+	Int32 result = sws_scale(	this->SWS_Context, source->PicturePtr->data,
+								source->PicturePtr->linesize, 0, source->Detail.Height,
+								destination->PicturePtr->data, destination->PicturePtr->linesize	);
+
+	destData = destination->Data;
+
+	delete source;
+	delete destination;
+	source = nullptr;
+	destination = nullptr;
+
+	return result;
 }
 

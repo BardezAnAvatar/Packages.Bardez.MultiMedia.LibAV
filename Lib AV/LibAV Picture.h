@@ -73,10 +73,10 @@ namespace Bardez
 				#pragma region Construction
 				internal:
 					/// <summary>Definition constructor</summary>
-					LibAVPicture(AVPicture* pointer, Int32 height, Int32 width, LibAVPixelFormat format)
+					LibAVPicture(AVPicture* pointer, Int32 width, Int32 height, LibAVPixelFormat format)
 					{
 						this->PicturePtr = pointer;
-						this->detail = LibAVPictureDetail::Build(height, width, format);
+						this->detail = LibAVPictureDetail::Build(width, height, format);
 					}
 
 					/// <summary>Definition constructor</summary>
@@ -92,6 +92,13 @@ namespace Bardez
 
 					/// <summary>Static constructor</summary>
 					static LibAVPicture^ BuildPicture(LibAVPixelFormat format, Int32 width, Int32 height);
+
+				internal:
+					/// <summary>Static constructor</summary>
+					static AVPicture* BuildNativePicture(LibAVPictureDetail detail);
+
+					/// <summary>Static constructor</summary>
+					static AVPicture* BuildNativePicture(LibAVPixelFormat format, Int32 width, Int32 height);
 				#pragma endregion
 
 

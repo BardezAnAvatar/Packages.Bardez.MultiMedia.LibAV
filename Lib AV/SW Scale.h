@@ -194,6 +194,12 @@ namespace Bardez
 					/// <param name="destination">Destination picture to write source data to</summary>
 					/// <returns>The height of the output image</returns>
 					Int32 Transform(LibAVPicture^ source, LibAVPicture^ destination);
+					
+					/// <summary>Performs the constructed SW Scale transformation associated with this context</summary>
+					/// <param name="sourceData">Source data to read from</summary>
+					/// <param name="destData">Destination Stream to write data to</summary>
+					/// <returns>The height of the output image</returns>
+					Int32 Transform(MemoryStream^ sourceData, [System::Runtime::InteropServices::Out] MemoryStream^% destData);
 				#pragma endregion
 				};
 			}

@@ -92,15 +92,15 @@ namespace Bardez
 					}
 
 					/// <summary>Definition constructor</summary>
-					/// <param name="height">Height of the image</param>
 					/// <param name="width">Width of the image</param>
+					/// <param name="height">Height of the image</param>
 					/// <param name="format">Pixel format of the image</param>
-					static LibAVPictureDetail Build(Int32 height, Int32 width, LibAVPixelFormat format)
+					static LibAVPictureDetail Build(Int32 width, Int32 height, LibAVPixelFormat format)
 					{
 						LibAVPictureDetail detail;
 
-						detail.Height = height;
 						detail.Width = width;
+						detail.Height = height;
 						detail.Format = format;
 
 						return detail;

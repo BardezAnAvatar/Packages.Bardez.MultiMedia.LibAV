@@ -169,14 +169,6 @@ namespace Bardez
 					/// <summary>Closes the codecs for streams within this Container's AVFormatContext</summary>
 					void CloseCodecs();
 				#pragma endregion
-
-
-				#pragma region Helpers
-				internal:
-					/// <summary>Generates a scaling context</summary>
-					/// <param name="codec">Codec context to populate the source to the scaling context</param>
-					SwsContext* GenerateScaleContext(AVCodecContext* codec);
-				#pragma endregion
 				};
 			}
 		}

@@ -280,9 +280,6 @@
     <ClCompile Include="Frame AV.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Frame BGRA.cpp">
-      <Filter>Source Files\Wrapper\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Stream Buffers.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>

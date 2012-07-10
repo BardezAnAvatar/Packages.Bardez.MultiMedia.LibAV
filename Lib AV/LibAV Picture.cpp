@@ -18,6 +18,19 @@ LibAVPicture^ LibAVPicture::BuildPicture(LibAVPictureDetail detail)
 /// <summary>Static constructor</summary>
 LibAVPicture^ LibAVPicture::BuildPicture(LibAVPixelFormat format, Int32 width, Int32 height)
 {
+	AVPicture* picture = LibAVPicture::BuildNativePicture(format, width, height);
+	return gcnew LibAVPicture(picture, width, height, format);
+}
+
+/// <summary>Static constructor</summary>
+AVPicture* LibAVPicture::BuildNativePicture(LibAVPictureDetail detail)
+{
+	return LibAVPicture::BuildNativePicture(detail.Format, detail.Width, detail.Height);
+}
+
+/// <summary>Static constructor</summary>
+AVPicture* LibAVPicture::BuildNativePicture(LibAVPixelFormat format, Int32 width, Int32 height)
+{
 	AVPicture* picture = new AVPicture;
 
 	picture->data[0] = NULL;
@@ -46,7 +59,7 @@ LibAVPicture^ LibAVPicture::BuildPicture(LibAVPixelFormat format, Int32 width, I
 	if (libavReturnCode < 0)
 		throw gcnew ApplicationException(ErrorHelper::GetErrorCodeDescription(libavReturnCode, ErrorHelper::LibAvCodec));
 
-	return gcnew LibAVPicture(picture, height, width, format);
+	return picture;
 }
 #pragma endregion
 

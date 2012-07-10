@@ -19,14 +19,25 @@ namespace Bardez
 				{
 				#pragma region Fields
 				public:
-					/// <summary>Height of this frame</summary>
-					Int32 Height;
-
-					/// <summary>Width of this frame</summary>
-					Int32 Width;
-
 					/// <summary>Data of the frame</summary>
-					LibAVPicture^ Data;
+					MemoryStream^ Data;
+
+				protected:
+					/// <summary>Frame's picture detail (height, width, pixel format)</summary>
+					LibAVPictureDetail detail;
+				#pragma endregion
+
+					
+				#pragma region Properties
+				public:
+					/// <summary>Exposes picture detail (height, width, pixel format)</summary>
+					property LibAVPictureDetail Detail
+					{
+						LibAVPictureDetail get()
+						{
+							return this->detail;
+						}
+					}
 				#pragma endregion
 
 
@@ -34,12 +45,12 @@ namespace Bardez
 				public:
 					/// <summary>Definition constructor</summary>
 					/// <param name="source">Source unmanaged frame copy values from</param>
-					/// <param name="picture">Source AVPicture to read from</param>
+					/// <param name="detail">Details of the frame's picture</param>
+					/// <param name="picture">Source MemoryStream to read from</param>
 					/// <param name="packet">Packet to read timestamps from</param>
-					FrameBGRA(AVFrame* source, LibAVPicture^ picture, AVPacket* packet) : FrameAV(source, packet)
+					FrameBGRA(AVFrame* source, LibAVPictureDetail detail, MemoryStream^ picture, AVPacket* packet) : FrameAV(source, packet)
 					{
-						this->Height = picture->Detail.Height;
-						this->Width = picture->Detail.Width;
+						this->detail = detail;
 						this->Data = picture;
 					}
 				#pragma endregion

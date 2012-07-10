@@ -164,7 +164,6 @@
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Frame Audio Int16.cpp" />
     <ClCompile Include="Frame AV.cpp" />
-    <ClCompile Include="Frame BGRA.cpp" />
     <ClCompile Include="LibAV Picture.cpp" />
     <ClCompile Include="Stream Buffers.cpp" />
     <ClCompile Include="Stream Info.cpp" />

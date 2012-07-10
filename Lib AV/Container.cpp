@@ -92,9 +92,6 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 	//declare a packet; use its reference as a pointer as needed
 	AVPacket packet;
 
-	//colorspace conversion
-	SwsContext* scalingContext = NULL;
-
 	//return code for erroring libav* libraries
 	Int32 libavReturnCode, frameFinished;
 
@@ -107,11 +104,11 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 			while (streamBuffers->BuffersFull)
 				System::Threading::Thread::Sleep(5);
 
-
+			//read a frame into a packet
 			libavReturnCode = av_read_frame(this->FormatContextPtr, &packet); //avformat.h @ 1454
 			//MVE seems to give -1 on error; it is not an EOF error, so not sure how to detect
 
-
+			//error detection
 			if (libavReturnCode > -1)
 			{
 				//frame Processing
@@ -122,39 +119,46 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 
 						if (streamBuffers->StreamsVideo[packet.stream_index]->Process)
 						{
+							//decode the video frame
 							libavReturnCode = avcodec_decode_video2(this->FormatContextPtr->streams[packet.stream_index]->codec, pFrame, &frameFinished, &packet);
 
+							//if there was no error AND the deode operation has finished a frame
 							if (libavReturnCode > -1 && frameFinished != 0)
-							{								
-								if (scalingContext == NULL)
-								{
-									scalingContext = this->GenerateScaleContext(this->FormatContextPtr->streams[packet.stream_index]->codec);
-								}
-	
-								Int32 height = this->FormatContextPtr->streams[packet.stream_index]->codec->height, width = this->FormatContextPtr->streams[packet.stream_index]->codec->width;
+							{
+								Int32 height = this->FormatContextPtr->streams[packet.stream_index]->codec->height;
+								Int32 width = this->FormatContextPtr->streams[packet.stream_index]->codec->width;
 
 								//allocate a picture
 								LibAVPicture^ picture = nullptr;
 								try
 								{
-									picture = LibAVPicture::BuildPicture(LibAVPixelFormat::PIX_FMT_BGRA, height, width);
+									LibAVPixelFormat codecPixelFormat = (LibAVPixelFormat)(this->FormatContextPtr->streams[packet.stream_index]->codec->pix_fmt);
+									picture = LibAVPicture::BuildPicture(codecPixelFormat, width, height);
 								}
-								catch (Exception^ ex)
+								catch (Exception^) //name is unused thus warning, but catch apparently requires a reference type to compile.
 								{
 									//deallocate packet
 									av_free_packet(&packet);	//avcodec.h @ 3459
 									throw;
 								}
-								
-								if (libavReturnCode > -1)
-								{
-									//convert the frame to BGRA
-									libavReturnCode = sws_scale(scalingContext, pFrame->data, pFrame->linesize, 0, this->FormatContextPtr->streams[packet.stream_index]->codec->height, picture->PicturePtr->data, picture->PicturePtr->linesize);
-									
-									//generate a new frame based off of the scaled frame
-									if (libavReturnCode > -1)
-										streamBuffers->StreamsVideo[packet.stream_index]->AddFrame(gcnew FrameBGRA(pFrame, picture, &packet));
-								}
+
+								//store the existing pointer
+								AVPicture* builtPicturePointer = picture->PicturePtr;
+
+								//wrap the frame in the created picture
+								picture->PicturePtr = reinterpret_cast<AVPicture*>(pFrame);	//downcast AVFrame to AVPicture
+
+								//extract the data
+								MemoryStream^ pictureData = picture->Data;
+
+								//generate a new frame based off of the scaled frame
+								streamBuffers->StreamsVideo[packet.stream_index]->AddFrame(gcnew FrameBGRA(pFrame, picture->Detail, pictureData, &packet));
+
+								//restore the constructed pointer
+								picture->PicturePtr = builtPicturePointer;
+
+								delete picture;
+								picture = nullptr;
 							}
 						}
 
@@ -196,9 +200,6 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 	}
 	finally
 	{
-		//free the scaling context
-		sws_freeContext(scalingContext);
-
 		//free the allocated frames
 		av_free(pFrame);
 
@@ -243,26 +244,6 @@ void Container::CloseCodecs()
 		avcodec_close(pointer->streams[index]->codec);
 		pointer->streams[index]->codec = NULL;
 	}
-}
-#pragma endregion
-
-
-#pragma region Helpers
-/// <summary>Generates a scaling context</summary>
-/// <param name="codec">Codec context to populate the source to the scaling context</param>
-SwsContext* Container::GenerateScaleContext(AVCodecContext* codec)
-{
-	Int32 width = codec->width, height = codec->height;
-
-	SwsContext* context = NULL;
-
-	//I only want RGB output for Direct2D, so hard code it.
-	context = sws_getContext(width, height, codec->pix_fmt, width, height, PIX_FMT_BGRA, SWS_BICUBIC, NULL, NULL, NULL);
-
-	if (context == NULL)
-		throw gcnew ApplicationException(String::Format("Could not initialize a scaling context in {0}.", ErrorHelper::LibSwScale));
-
-	return context;
 }
 #pragma endregion
 
