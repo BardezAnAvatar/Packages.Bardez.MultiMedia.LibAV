@@ -12,7 +12,7 @@ namespace Bardez
 			namespace LibAV
 			{
 				/// <summary>CLR-exposed enumerator describing a codec's output audio sample format</summary>
-				public enum struct AuioSampleFormat : System::Int32
+				public enum struct AudioSampleFormat : System::Int32
 				{
 					/// <summary>None</summary>
 					AV_SAMPLE_FMT_NONE = -1,
