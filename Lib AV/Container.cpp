@@ -119,7 +119,7 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 
 						if (streamBuffers->StreamsVideo[packet.stream_index]->Process)
 						{
-							//decode the video frame
+							//Decode the video frame. Note: this will set the memory pointers found in pFrame->data
 							libavReturnCode = avcodec_decode_video2(this->FormatContextPtr->streams[packet.stream_index]->codec, pFrame, &frameFinished, &packet);
 
 							//if there was no error AND the deode operation has finished a frame
@@ -132,8 +132,11 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 								LibAVPicture^ picture = nullptr;
 								try
 								{
-									LibAVPixelFormat codecPixelFormat = (LibAVPixelFormat)(this->FormatContextPtr->streams[packet.stream_index]->codec->pix_fmt);
-									picture = LibAVPicture::BuildPicture(codecPixelFormat, width, height);
+									LibAVPixelFormat codecPixelFormat = static_cast<LibAVPixelFormat>(this->FormatContextPtr->streams[packet.stream_index]->codec->pix_fmt);
+									
+									//Documentation suggests the codec will manage that memory;
+									//	when constructing the LibAVPicture to extract data, tell it not to dispose memory.
+									picture = gcnew LibAVPicture(reinterpret_cast<AVPicture*>(pFrame), LibAVPictureDetail::Build(width, height, codecPixelFormat), true, false);
 								}
 								catch (Exception^) //name is unused thus warning, but catch apparently requires a reference type to compile.
 								{
@@ -142,20 +145,14 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 									throw;
 								}
 
-								//store the existing pointer
-								AVPicture* builtPicturePointer = picture->PicturePtr;
-
-								//wrap the frame in the created picture
-								picture->PicturePtr = reinterpret_cast<AVPicture*>(pFrame);	//downcast AVFrame to AVPicture
-
 								//extract the data
 								MemoryStream^ pictureData = picture->Data;
 
 								//generate a new frame based off of the scaled frame
 								streamBuffers->StreamsVideo[packet.stream_index]->AddFrame(gcnew FrameBGRA(pFrame, picture->Detail, pictureData, &packet));
 
-								//restore the constructed pointer
-								picture->PicturePtr = builtPicturePointer;
+								//blank out the pointer so as to not delete pFrame
+								picture->PicturePtr = NULL;
 
 								delete picture;
 								picture = nullptr;

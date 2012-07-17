@@ -95,11 +95,12 @@ Int32 SWScale::Transform(LibAVPicture^ source, LibAVPicture^ destination)
 /// <returns>The height of the output image</returns>
 Int32 SWScale::Transform(MemoryStream^ sourceData, [System::Runtime::InteropServices::Out] MemoryStream^% destData)
 {
-	LibAVPicture^ source = LibAVPicture::BuildPicture(this->detailSource);
+	LibAVPicture^ source = LibAVPicture::BuildPicture(this->detailSource, sourceData);
 	LibAVPicture^ destination = LibAVPicture::BuildPicture(this->detailDestination);
 
-	source->Data = sourceData;
-
+	//Note: sw_scale does not perform any allocation for the destination AVPicture linesize or data arrays.
+	//	Ergo, when transforming an input data stream, I need to copy the source pointers for source, but still
+	//	allocate memory for destination; the source should *not* be allocated, but instead be filled.
 	
 	Int32 result = sws_scale(	this->SWS_Context, source->PicturePtr->data,
 								source->PicturePtr->linesize, 0, source->Detail.Height,

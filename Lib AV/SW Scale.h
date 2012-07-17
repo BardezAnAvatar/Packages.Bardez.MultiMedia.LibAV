@@ -102,9 +102,10 @@ namespace Bardez
 						this->options = options;
 
 						//generate the context
+						//TODO: This API method is marked to become deprecated, so watch for a replacement
 						SwsContext* context = sws_getContext(	this->detailSource.Width, this->detailSource.Height, (PixelFormat)this->detailSource.Format,
 																this->detailDestination.Width, this->detailDestination.Height, (PixelFormat)this->detailDestination.Format,
-																(Int32)options, NULL, NULL, NULL);
+																static_cast<Int32>(options), NULL, NULL, NULL);
 
 						if (context == NULL)
 							throw gcnew ApplicationException(String::Format("Could not initialize a scaling context in {0}.", ErrorHelper::LibSwScale));
@@ -139,11 +140,11 @@ namespace Bardez
 						if (this->SWS_Context)
 						{
 							SwsContext* nativePtr = this->SWS_Context;
-							
+
 							//free the scaling context
 							sws_freeContext(nativePtr);
 
-							this->context = System::IntPtr::Zero;
+							this->context = IntPtr::Zero;
 						}
 					}
 				#pragma endregion

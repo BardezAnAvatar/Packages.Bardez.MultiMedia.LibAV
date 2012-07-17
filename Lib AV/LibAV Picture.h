@@ -33,6 +33,12 @@ namespace Bardez
 
 					/// <summary>Picture detail (height, width, pixel format)</summary>
 					LibAVPictureDetail detail;
+
+					/// <summary>Flag that indcates whether the memory was assigned by an outside source on construction</summary>
+					Boolean assignedDataOnConstruction;
+
+					/// <summary>Flag that indicates whether or not to free memory held by AVPicture on disposal</summary>
+					Boolean freeMemoryOnDestruction;
 				#pragma endregion
 
 
@@ -73,32 +79,41 @@ namespace Bardez
 				#pragma region Construction
 				internal:
 					/// <summary>Definition constructor</summary>
-					LibAVPicture(AVPicture* pointer, Int32 width, Int32 height, LibAVPixelFormat format)
-					{
-						this->PicturePtr = pointer;
-						this->detail = LibAVPictureDetail::Build(width, height, format);
-					}
-
-					/// <summary>Definition constructor</summary>
-					LibAVPicture(AVPicture* pointer, LibAVPictureDetail detail)
+					/// <param name="pointer">Pointer to the native AVPicture</param>
+					/// <param name="detail">Details of the picture</param>
+					/// <param name="assignedDataPointer">Flag that indcates whether the memory was assigned by an outside source on construction</param>
+					/// <param name="freeMemory">Flag that indicates whether or not to free memory held by AVPicture on disposal</param>
+					LibAVPicture(AVPicture* pointer, LibAVPictureDetail detail, Boolean assignedDataPointer, Boolean freeMemory)
 					{
 						this->PicturePtr = pointer;
 						this->detail = detail;
+						this->assignedDataOnConstruction = assignedDataPointer;
+						this->freeMemoryOnDestruction = freeMemory;
 					}
 
 				public:
 					/// <summary>Static constructor</summary>
+					/// <param name="detail">Pixel format, width and height of the picture to build</param>
 					static LibAVPicture^ BuildPicture(LibAVPictureDetail detail);
 
 					/// <summary>Static constructor</summary>
-					static LibAVPicture^ BuildPicture(LibAVPixelFormat format, Int32 width, Int32 height);
+					/// <param name="detail">Pixel format, width and height of the picture to build</param>
+					/// <param name="source">Source data to populate the Picture with</param>
+					static LibAVPicture^ BuildPicture(LibAVPictureDetail detail, MemoryStream^ source);
 
 				internal:
-					/// <summary>Static constructor</summary>
+					/// <summary>Static constructor that builds an AVPicture instance</summary>
+					/// <param name="detail">Detail of the AVPicture to build it from</param>
 					static AVPicture* BuildNativePicture(LibAVPictureDetail detail);
 
-					/// <summary>Static constructor</summary>
-					static AVPicture* BuildNativePicture(LibAVPixelFormat format, Int32 width, Int32 height);
+					/// <summary>Static constructor that builds an AVPicture instance</summary>
+					/// <param name="detail">Detail of the AVPicture to build it from</param>
+					/// <param name="source">Source data to populate the Picture with</param>
+					static AVPicture* BuildNativePicture(LibAVPictureDetail detail, MemoryStream^ source);
+
+					/// <summary>Clears the contents of an AVPicture's data and linesize arrays. Does not deallocate.</summary>
+					/// <param name="picture">AVPicture instance to clear</param>
+					static void ClearAvPicture(AVPicture* picture);
 				#pragma endregion
 
 
@@ -127,10 +142,30 @@ namespace Bardez
 						if (this->PicturePtr)
 						{
 							AVPicture* nativePtr = this->PicturePtr;
-							avpicture_free(nativePtr);
+							
+							LibAVPicture::DeleteUnmanagedAllocatedMemory(nativePtr);
+
 							delete nativePtr;
 							this->PicturePtr = NULL;
 						}
+					}
+
+					/// <summary>Deletes allocated memory of the AVPicture data member</summary>
+					/// <param name="nativePtr">AVPicture instance to clear</param>
+					void DeleteUnmanagedAllocatedMemory(AVPicture* nativePtr)
+					{
+						//is memory held elsewhere?
+						if (this->freeMemoryOnDestruction)
+						{
+							//free memory held by the AVPicure
+							if (this->assignedDataOnConstruction)	//if memory was allocated externally
+								delete [] nativePtr->data[0];
+							else									//memory was allocated by avpicture_alloc()
+								avpicture_free(nativePtr);
+						}
+
+						//set the pointers & line stride to NULL
+						LibAVPicture::ClearAvPicture(nativePtr);
 					}
 				#pragma endregion
 
@@ -144,6 +179,21 @@ namespace Bardez
 					/// <summary>Accesses the data from the 8-channel byte Pointers used by LibAV</summary>
 					/// <returns>A Stream of flattened pixel data</returns>
 					MemoryStream^ GetData();
+				#pragma endregion
+
+
+				#pragma region Helper Methods
+				protected:
+					/// <summary>Indicates whether the AVPicture pointer appears to be allocated.</summary>
+					/// <param name="picture">AVPicture pointer to assign to</param>
+					/// <returns>True if any of the data pointers are non-NULL</returns>
+					static Boolean IsPictureAllocated(AVPicture* picture);
+
+					/// <summary>Copies the data pointer from the source array an assigns it to the picturepointer</summary>
+					/// <param name="picture">AVPicture pointer to assign to</param>
+					/// <param name="detail">Detail of the AVPicture to build it from</param>
+					/// <param name="source">Source MemoryStream to copy from</param>
+					static void CopyFromStream(AVPicture* picture, LibAVPictureDetail detail, MemoryStream^ source);
 				#pragma endregion
 				};
 			}

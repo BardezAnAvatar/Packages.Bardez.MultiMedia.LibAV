@@ -178,9 +178,9 @@ namespace Bardez
 					}
 
 					/// <summary>Output format of audio samples</summary>
-					property AuioSampleFormat SampleFormat
+					property AudioSampleFormat SampleFormat
 					{
-						AuioSampleFormat get();
+						AudioSampleFormat get();
 					}
 			#pragma endregion
 

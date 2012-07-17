@@ -143,9 +143,9 @@ System::Int32 CodecInfo::ChannelCount::get()
 }
 
 /// <summary>Output format of audio samples</summary>
-AuioSampleFormat CodecInfo::SampleFormat::get()
+AudioSampleFormat CodecInfo::SampleFormat::get()
 {
-	return (AuioSampleFormat)(this->CodecContextPtr->sample_fmt);
+	return (AudioSampleFormat)(this->CodecContextPtr->sample_fmt);
 }
 #pragma endregion
 

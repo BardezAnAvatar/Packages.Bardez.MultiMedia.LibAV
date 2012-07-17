@@ -260,6 +260,9 @@
     <None Include="Generic notes.txt">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="AVPicture Notes.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LibAV Picture.cpp">
