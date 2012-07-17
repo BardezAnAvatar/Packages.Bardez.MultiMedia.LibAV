@@ -6,6 +6,7 @@
 #include "Frame AV.h"
 
 using namespace System;
+using namespace System::IO;
 
 namespace Bardez
 {
@@ -32,7 +33,7 @@ namespace Bardez
 
 
 				#pragma region Construction
-				public:
+				internal:
 					/// <summary>Definition constructor</summary>
 					/// <param name="source">Source unmanaged frame to read from</param>
 					/// <param name="packet">Packet to read timestamps from</param>
@@ -51,6 +52,10 @@ namespace Bardez
 					/// <summary>Helper that copies data from the unmanaged pointers to managed set, based on the expected frame type</summary>
 					/// <param name="source">Source unmanaged frame to read from</param>
 					void CopyData(AVFrame* source);
+
+					/// <summary>Computes the size of an audio sample based on its audio format</summary>
+					/// <param name="format">Format of the audio sample from a source frame</format>
+					static Int32 SampleSize(Int32 format);
 				#pragma endregion
 				};
 			}
