@@ -8,6 +8,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
+//TODO: Deprecate this code file, as Info is replaced by the actual Buffer, StreamProcessingBuffer
 
 namespace Bardez
 {

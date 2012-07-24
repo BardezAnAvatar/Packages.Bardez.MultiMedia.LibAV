@@ -16,7 +16,7 @@ namespace Bardez
 			namespace LibAV 
 			{
 				/// <summary>CLR-exposed enumerator describing a codec ID</summary>
-				public enum struct CodecID : System::UInt32
+				public enum struct LibAVCodecID : System::UInt32
 				{
 					CODEC_ID_NONE,
 

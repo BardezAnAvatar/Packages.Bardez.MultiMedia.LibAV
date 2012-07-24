@@ -37,11 +37,11 @@ namespace Bardez
 
 
 				#pragma region Construction
-				public:
+				internal:
 					/// <summary>Definition constructor</summary>
-					/// <param name="source">Source unmanaged frame to read from</param>
+					/// <param name="keyFrame">Indicates whether this frame is a keyframe</param>
 					/// <param name="packet">Packet to read timestamps from</param>
-					FrameAV(AVFrame* source, AVPacket* packet);
+					FrameAV(Boolean keyFrame, AVPacket* packet);
 				#pragma endregion
 
 
@@ -49,7 +49,7 @@ namespace Bardez
 				public:
 					/// <summary>Retrieves a System::TimeSpan instance based off of the timeBase and TimeStampPresentation</summary>
 					/// <param name="timeBase">Rational number base time of the time stamp</param>
-					TimeSpan GetPresentationTimeSpan(Rational^ timeBase);
+					TimeSpan GetPresentationStartTimeSpan(Rational^ timeBase);
 
 					/// <summary>Retrieves a System::TimeSpan instance based off of the timeBase and TimeStampDecode</summary>
 					/// <param name="timeBase">Rational number base time of the time stamp</param>

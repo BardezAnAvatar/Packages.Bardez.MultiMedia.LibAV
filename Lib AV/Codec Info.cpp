@@ -30,9 +30,9 @@ MediaType CodecInfo::CodecType::get()
 }
 
 /// <summary>Unique ID of the codec within Lib AV</summary>
-Bardez::Projects::MultiMedia::LibAV::CodecID CodecInfo::ID::get()
+Bardez::Projects::MultiMedia::LibAV::LibAVCodecID CodecInfo::ID::get()
 {
-	return (Bardez::Projects::MultiMedia::LibAV::CodecID)(this->CodecContextPtr->codec_id);
+	return (Bardez::Projects::MultiMedia::LibAV::LibAVCodecID)(this->CodecContextPtr->codec_id);
 }
 
 /// <summary>(Possibly erroneously) converted FourCC code from a container</summary>

@@ -9,7 +9,7 @@ extern "C"
 }
 
 #include "Audio Sample Format.h"
-#include "Codec ID.h"
+#include "LibAV Codec ID.h"
 #include "Media Type.h"
 #include "LibAV Pixel Format.h"
 #include "Rational.h"
@@ -67,9 +67,9 @@ namespace Bardez
 					}
 
 					/// <summary>Unique ID of the codec within Lib AV</summary>
-					property CodecID ID
+					property LibAVCodecID ID
 					{
-						CodecID get();
+						LibAVCodecID get();
 					}
 
 					/// <summary>(Possibly erroneously) converted FourCC code from a container</summary>

@@ -6,6 +6,7 @@
 #include "Frame Audio Int16.h"
 #include "LibAV Pixel Format.h"
 #include "LibAV Picture.h"
+#include "LibAV Codec ID.h"
 
 
 using namespace System;
@@ -67,11 +68,21 @@ void Container::LoadCodecs(array<Int32>^ streamIndeces)
 {
 	for each(Int32 index in streamIndeces)
 	{
-		AVCodec* ptrCodec = avcodec_find_decoder(this->FormatContextPtr->streams[index]->codec->codec_id);
-		Int32 libavReturnCode = avcodec_open2(this->FormatContextPtr->streams[index]->codec, ptrCodec, NULL);	//have you any option? no? NULL.
+		AVCodecContext* codecContext = this->FormatContextPtr->streams[index]->codec;
 
-		if (libavReturnCode < 0)
-			throw gcnew ApplicationException(ErrorHelper::GetErrorCodeDescription(libavReturnCode, ErrorHelper::LibAvCodec));
+		CodecID codec = codecContext->codec_id;
+
+		//codecContext->codec_id maps to avcodec.h @ line 93
+		AVCodec* ptrCodec = avcodec_find_decoder(codec);
+
+		//CODEC_ID_TEXT returns NULL. In this case, do not load a codec and the stream should be decodable past this issue.
+		if (ptrCodec != NULL)
+		{
+			Int32 libavReturnCode = avcodec_open2(codecContext, ptrCodec, NULL);	//have you any option? no? NULL.
+
+			if (libavReturnCode < 0)
+				throw gcnew ApplicationException(ErrorHelper::GetErrorCodeDescription(libavReturnCode, ErrorHelper::LibAvCodec));
+		}
 	}
 }
 
@@ -173,9 +184,40 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 						}
 						break;
 
-					//case AVMEDIA_TYPE_SUBTITLE:
-					//	libavReturnCode = avcodec_decode_subtitle2(this->FormatContextPtr->streams[1]->codec, pFrame, &frameFinished, &packet);
-					//	break;
+					case AVMEDIA_TYPE_SUBTITLE:
+
+						LibAVCodecID codecId = (LibAVCodecID)reinterpret_cast<CodecID>(this->FormatContextPtr->streams[packet.stream_index]->codec->codec_id);
+
+						//switch on possible behavior for subtitles
+						switch (codecId)
+						{
+							case LibAVCodecID::CODEC_ID_TEXT:
+								//scope this to not matter to other cases
+								{
+									//process the raw text packet
+									FrameSubtitleText^ subtitle = this->DecodeSubtitleText(&packet);
+								}
+								break;
+
+							default:
+								//There does not appear to be an API for allocating memory for an AVSubtitle structure
+								AVSubtitle subtitleStruct;
+
+								libavReturnCode = avcodec_decode_subtitle2(this->FormatContextPtr->streams[packet.stream_index]->codec, &subtitleStruct, &frameFinished, &packet);
+
+								//if there was no error AND the deode operation has finished a frame
+								if (libavReturnCode > -1 && frameFinished != 0)
+								{
+									//TODO: do something with the decoded subtitle. I think these are video objects.
+
+
+									//free memory allocated to the subtitle struct
+									avsubtitle_free(&subtitleStruct);
+								}
+								break;
+						}
+
+						break;
 
 					//case AVMEDIA_TYPE_DATA:
 					//case AVMEDIA_TYPE_ATTACHMENT:
@@ -241,6 +283,38 @@ void Container::CloseCodecs()
 		avcodec_close(pointer->streams[index]->codec);
 		pointer->streams[index]->codec = NULL;
 	}
+}
+
+
+/// <summary>Decodes a text Subtitle</summary>
+/// <param name="packet">Packet which contains initial data</param>
+/// <returns>A managed FrameSubtitleText instance</returns>
+/// <remarks>
+///		Copied largely from httr://www.digipedia.pl/usenet/thread/16949/6631/
+///		and definately derived from that thread
+/// </remarks>
+FrameSubtitleText^ Container::DecodeSubtitleText(AVPacket* packet)
+{
+	//grab a stream reference 
+	AVStream* stream = this->FormatContextPtr->streams[packet->stream_index];
+
+	//get the base time
+	AVRational timeBase = stream->time_base;
+
+	//get data
+	uint8_t * text = packet->data;
+	Int32 size = packet->size;
+
+	//get presentation info
+	Int64 TimeStampDecode = packet->dts;
+	Int64 TimeStampPresentation = packet->pts;
+	Int64 duration = packet->duration;
+	Int64 convDuration = packet->convergence_duration;
+
+	//now build something with it
+	FrameSubtitleText^ subtitle = gcnew FrameSubtitleText(packet);
+
+	return subtitle;
 }
 #pragma endregion
 

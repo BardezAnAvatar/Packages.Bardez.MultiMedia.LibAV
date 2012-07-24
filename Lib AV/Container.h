@@ -18,8 +18,11 @@ extern "C"
 #include "Stream Buffers.h"
 #include "Stream Info.h"
 #include "Stream Processing Info.h"
+#include "Frame Subtitle Text.h"
+
 
 using namespace System::Collections::Generic;
+
 
 namespace Bardez
 {
@@ -168,6 +171,15 @@ namespace Bardez
 
 					/// <summary>Closes the codecs for streams within this Container's AVFormatContext</summary>
 					void CloseCodecs();
+
+					/// <summary>Decodes a text Subtitle</summary>
+					/// <param name="packet">Packet which contains initial data</param>
+					/// <returns>A managed FrameSubtitleText instance</returns>
+					/// <remarks>
+					///		Copied largely from httr://www.digipedia.pl/usenet/thread/16949/6631/
+					///		and definitely derived from that thread
+					/// </remarks>
+					FrameSubtitleText^ DecodeSubtitleText(AVPacket* packet);
 				#pragma endregion
 				};
 			}

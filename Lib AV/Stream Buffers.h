@@ -32,11 +32,17 @@ namespace Bardez
 
 					/// <summary>Represents a collection of stream info keyed to the stream index number</summary>
 					IList<StreamInfo^>^ Streams;
+
+					/// <summary>Default size of the buffers being created.</summary>
+					Int32 DefaultBuffserSize;
 				#pragma endregion
 
 
 				#pragma region Properties
 				public:
+					//TODO: change this behavior so that each buffer may have its own size when checking for fullness.
+					//	Perhaps change to a function that checks for a given stream's full-ness rather than the entire fullness.
+
 					/// <summary>Exposes a flag indicating whether the streams' buffers are full</summary>
 					/// <value>True indicates that the buffers are full and should not be added to; false indicates that room still exists</value>
 					property Boolean BuffersFull
@@ -48,12 +54,20 @@ namespace Bardez
 
 				#pragma region Construction
 				public:
-					/// <summary>Default constructor</summary>
-					StreamBuffers() { }
-
 					/// <summary>Definition constructor</summary>
+					/// <param name="streams">Streams to construct from</param>
+					/// <param name="defaultBufferSize">size of stream buffer</param>
+					StreamBuffers(IList<StreamInfo^>^ streams, Int32 defaultBufferSize)
+					{
+						this->DefaultBuffserSize = defaultBufferSize;
+						this->InitializeDictionaries(streams);
+					}
+
+					/// <summary>Partial definition constructor</summary>
+					/// <param name="streams">Streams to construct from</param>
 					StreamBuffers(IList<StreamInfo^>^ streams)
 					{
+						this->DefaultBuffserSize = 30;
 						this->InitializeDictionaries(streams);
 					}
 				#pragma endregion

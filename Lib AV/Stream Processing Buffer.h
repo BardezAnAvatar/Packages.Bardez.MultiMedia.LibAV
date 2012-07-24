@@ -159,13 +159,19 @@ namespace Bardez
 				#pragma region Construction
 				internal:
 					/// <summary>Definition constructor</summary>
-					StreamProcessingBuffer(AVStream* ptrStream)
+					/// <param name="ptrStream">Pointer to an AVStream instance</param>
+					/// <param name="bufferSize">Size of the buffer to instantiate. less than 1 will default to 30.</param>
+					StreamProcessingBuffer(AVStream* ptrStream, Int32 bufferSize)
 					{
 						this->StreamPtr = ptrStream;
 						this->DataStream = gcnew List<FrameType>();
 						this->lockingObject = gcnew Object();
 						this->Process = false;
-						this->BufferSize = 30;
+
+						//set the size of the internal frame buffer.
+						if (bufferSize < 1)
+							bufferSize = 30;
+						this->BufferSize = bufferSize;
 					}
 				#pragma endregion
 

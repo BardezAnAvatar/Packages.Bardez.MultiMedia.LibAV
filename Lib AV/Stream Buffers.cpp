@@ -53,11 +53,11 @@ void StreamBuffers::InitializeDictionaries(IList<StreamInfo^>^ streams)
 		switch (streams[index]->Codec->CodecType)
 		{
 			case MediaType::AVMEDIA_TYPE_VIDEO:
-				this->StreamsVideo->Add(index, gcnew StreamProcessingBuffer<FrameBGRA^>(streams[index]->StreamPtr));
+				this->StreamsVideo->Add(index, gcnew StreamProcessingBuffer<FrameBGRA^>(streams[index]->StreamPtr, this->DefaultBuffserSize));
 				break;
 
 			case MediaType::AVMEDIA_TYPE_AUDIO:
-				this->StreamsAudio->Add(index, gcnew StreamProcessingBuffer<FrameAudioInt16^>(streams[index]->StreamPtr));
+				this->StreamsAudio->Add(index, gcnew StreamProcessingBuffer<FrameAudioInt16^>(streams[index]->StreamPtr, this->DefaultBuffserSize));
 				break;
 
 			case MediaType::AVMEDIA_TYPE_SUBTITLE:

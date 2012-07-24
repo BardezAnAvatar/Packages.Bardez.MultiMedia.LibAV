@@ -8,13 +8,13 @@ using namespace Bardez::Projects::MultiMedia::LibAV;
 
 #pragma region Construction
 /// <summary>Definition constructor</summary>
-/// <param name="source">Source unmanaged frame to read from</param>
+/// <param name="keyFrame">Indicates whether this frame is a keyframe</param>
 /// <param name="packet">Packet to read timestamps from</param>
-FrameAV::FrameAV(AVFrame* source, AVPacket* packet)
+FrameAV::FrameAV(Boolean keyFrame, AVPacket* packet)
 {
 	this->TimeStampDecode = packet->dts;	//drop this?
 	this->TimeStampPresentation = packet->pts;
-	this->KeyFrame = Convert::ToBoolean(source->key_frame);
+	this->KeyFrame = keyFrame;
 }
 #pragma endregion
 
@@ -22,7 +22,7 @@ FrameAV::FrameAV(AVFrame* source, AVPacket* packet)
 #pragma region Methods
 /// <summary>Retrieves a System::TimeSpan instance based off of the timeBase and TimeStampPresentation</summary>
 /// <param name="timeBase">Rational number base time of the time stamp</param>
-TimeSpan FrameAV::GetPresentationTimeSpan(Rational^ timeBase)
+TimeSpan FrameAV::GetPresentationStartTimeSpan(Rational^ timeBase)
 {
 	return Rational::GetTimeSpan(timeBase, this->TimeStampPresentation);
 }

@@ -213,9 +213,6 @@
     <ClInclude Include="Stream Processing Info.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Codec ID.h">
-      <Filter>Header Files\Wrapper\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Codec Info.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
@@ -253,6 +250,15 @@
       <Filter>Header Files\Wrapper\Enums</Filter>
     </ClInclude>
     <ClInclude Include="LibAV Picture Detail.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Codec ID.h">
+      <Filter>Header Files\Wrapper\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame Subtitle.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame Subtitle Text.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
   </ItemGroup>
@@ -293,6 +299,9 @@
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
     <ClCompile Include="SW Scale.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame Subtitle.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
   </ItemGroup>

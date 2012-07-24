@@ -6,6 +6,9 @@
 #include "Frame AV.h"
 #include "LibAV Picture.h"
 
+using namespace System;
+using namespace System::IO;
+
 namespace Bardez
 {
 	namespace Projects
@@ -48,7 +51,7 @@ namespace Bardez
 					/// <param name="detail">Details of the frame's picture</param>
 					/// <param name="picture">Source MemoryStream to read from</param>
 					/// <param name="packet">Packet to read timestamps from</param>
-					FrameBGRA(AVFrame* source, LibAVPictureDetail detail, MemoryStream^ picture, AVPacket* packet) : FrameAV(source, packet)
+					FrameBGRA(AVFrame* source, LibAVPictureDetail detail, MemoryStream^ picture, AVPacket* packet) : FrameAV(Convert::ToBoolean(source->key_frame), packet)
 					{
 						this->detail = detail;
 						this->Data = picture;

@@ -17,7 +17,7 @@ void FrameAudioInt16::CopyData(AVFrame* source)
 	Int32 dataSize = this->CountSamples * this->CountChannels * formatByteSize;
 	this->Data = gcnew array<Byte>(dataSize);
 
-	Marshal::Copy(this->Data, 0, IntPtr(source->data[0]), dataSize);
+	Marshal::Copy(IntPtr(source->data[0]), this->Data, 0, dataSize);
 }
 
 /// <summary>Computes the size of an audio sample based on its audio format</summary>

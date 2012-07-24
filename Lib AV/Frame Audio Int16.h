@@ -38,7 +38,7 @@ namespace Bardez
 					/// <param name="source">Source unmanaged frame to read from</param>
 					/// <param name="packet">Packet to read timestamps from</param>
 					/// <param name="channels">Number of audio channels</param>
-					FrameAudioInt16(AVFrame* source, AVPacket* packet, Int32 channels) : FrameAV(source, packet)
+					FrameAudioInt16(AVFrame* source, AVPacket* packet, Int32 channels) : FrameAV(Convert::ToBoolean(source->key_frame), packet)
 					{
 						this->CountSamples = source->nb_samples;
 						this->CountChannels = channels;
