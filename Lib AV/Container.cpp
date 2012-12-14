@@ -111,6 +111,10 @@ void Container::DecodeStreams(StreamBuffers^ streamBuffers)
 		//read all frames and frame types
 		while (true)
 		{
+			//TODO: Let there be some sort of messaging component that allows the Container to have a seek time set
+			//	and a stop decoding flag set, so one can break out of this decoding loop and/or seek appropriately
+
+
 			//sleep while buffers are full, to allow the calling application to consume them
 			while (streamBuffers->BuffersFull)
 				System::Threading::Thread::Sleep(5);
