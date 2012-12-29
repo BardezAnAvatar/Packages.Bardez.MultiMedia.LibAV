@@ -40,6 +40,7 @@ Rational^ Container::TimeBase::get()
 /// <param name="path">Path of the file to open</param>
 void Container::OpenMediaFile(String^ path)
 {
+	//TODO: Need to dispose of the IntPtr generated below; Marshal::FreeHGlobal(IntPtr)
 	char* unmanagedPath = reinterpret_cast<char*>(Marshal::StringToHGlobalAnsi(path).ToPointer());
 	
 	Int32 libavReturnCode;
