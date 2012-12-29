@@ -68,6 +68,7 @@ namespace Bardez
 							this->stream = System::IntPtr(value);
 						}
 					}
+
 				public:
 					/// <summary>Index of this stream</summary>
 					property System::Int32 Index
