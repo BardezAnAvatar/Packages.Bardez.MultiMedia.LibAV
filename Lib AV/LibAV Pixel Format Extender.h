@@ -36,7 +36,7 @@ namespace Bardez
 					/// <param name="source">Source LibAVPixelFormat to translate</param>
 					/// <returns>The translated pixel format, or LibAVPixelFormat.PIX_FMT_NONE if no translation available.</returns>
 					[ExtensionAttribute]
-					static PixelFormat FromLibAVPixelFormat(LibAVPixelFormat source);
+					static PixelFormat ToPixelFormat(LibAVPixelFormat source);
 				#pragma endregion
 				};
 			}

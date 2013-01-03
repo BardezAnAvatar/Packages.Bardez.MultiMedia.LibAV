@@ -48,7 +48,7 @@ LibAVPixelFormat LibAVPixelFormatExtender::ToLibAVPixelFormat(PixelFormat source
 /// <summary>Converts the LibAV Pixel Format instance to a PixelFormat enumerator</summary>
 /// <param name="source">Source LibAVPixelFormat to translate</param>
 /// <returns>The translated pixel format, or LibAVPixelFormat.PIX_FMT_NONE if no translation available.</returns>
-PixelFormat LibAVPixelFormatExtender::FromLibAVPixelFormat(LibAVPixelFormat source)
+PixelFormat LibAVPixelFormatExtender::ToPixelFormat(LibAVPixelFormat source)
 {
     PixelFormat format = PixelFormat::Invalid;
 
