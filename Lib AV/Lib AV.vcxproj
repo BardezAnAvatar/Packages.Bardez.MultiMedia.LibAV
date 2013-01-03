@@ -146,6 +146,7 @@
     <ClInclude Include="libswscale\swscale.h" />
     <ClInclude Include="LibAV Pixel Format.h" />
     <ClInclude Include="Media Type.h" />
+    <ClInclude Include="LibAV Pixel Format Extender.h" />
     <ClInclude Include="Rational.h" />
     <ClInclude Include="Resize Options.h" />
     <ClInclude Include="Stream Buffers.h" />
@@ -169,11 +170,17 @@
     <ClCompile Include="Frame AV.cpp" />
     <ClCompile Include="Frame Subtitle.cpp" />
     <ClCompile Include="LibAV Picture.cpp" />
+    <ClCompile Include="LibAV Pixel Format Extender.cpp" />
     <ClCompile Include="Stream Buffers.cpp" />
     <ClCompile Include="Stream Info.cpp" />
     <ClCompile Include="Stream Processing Buffer.cpp" />
     <ClCompile Include="Stream Processing Info.cpp" />
     <ClCompile Include="SW Scale.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Media Base\Media Base.csproj">
+      <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
