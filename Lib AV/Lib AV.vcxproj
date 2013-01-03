@@ -155,6 +155,7 @@
     <ClInclude Include="Stream Processing Info.h" />
     <ClInclude Include="LibAV Picture Detail.h" />
     <ClInclude Include="SW Scale.h" />
+    <ClInclude Include="SWScale Pixel Converter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AVPicture Notes.txt" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Stream Processing Buffer.cpp" />
     <ClCompile Include="Stream Processing Info.cpp" />
     <ClCompile Include="SW Scale.cpp" />
+    <ClCompile Include="SWScale Pixel Converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Media Base\Media Base.csproj">

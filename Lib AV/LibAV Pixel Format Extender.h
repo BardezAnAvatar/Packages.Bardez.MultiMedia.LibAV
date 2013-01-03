@@ -30,13 +30,13 @@ namespace Bardez
 					/// <param name="source">Source PixelFormat to translate</param>
 					/// <returns>The translated pixel format, or LibAVPixelFormat.PIX_FMT_NONE if no translation available.</returns>
 					[ExtensionAttribute]
-					static LibAVPixelFormat ToLibAVPixelFormat(PixelFormat source);
+					static LibAVPixelFormat ToLibAVPixelFormat(Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat source);
 
 					/// <summary>Converts the LibAV Pixel Format instance to a PixelFormat enumerator</summary>
 					/// <param name="source">Source LibAVPixelFormat to translate</param>
 					/// <returns>The translated pixel format, or LibAVPixelFormat.PIX_FMT_NONE if no translation available.</returns>
 					[ExtensionAttribute]
-					static PixelFormat ToPixelFormat(LibAVPixelFormat source);
+					static Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat ToPixelFormat(LibAVPixelFormat source);
 				#pragma endregion
 				};
 			}
