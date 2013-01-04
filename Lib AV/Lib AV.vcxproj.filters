@@ -267,6 +267,9 @@
     <ClInclude Include="SWScale Pixel Converter.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
+    <ClInclude Include="LibAV Audio Format Extender.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Generic notes.txt">
@@ -314,6 +317,9 @@
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
     <ClCompile Include="SWScale Pixel Converter.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LibAV Audio Format Extender.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
   </ItemGroup>
