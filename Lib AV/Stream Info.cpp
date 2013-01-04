@@ -1,8 +1,10 @@
 
 
 #include "Stream Info.h"
+#include "LibAV Audio Format Extender.h"
 
 
+using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -66,6 +68,32 @@ Rational^ StreamInfo::AspectRatio::get()
 Rational^ StreamInfo::FrameRateAverage::get()
 {
 	return gcnew Rational(this->StreamPtr->avg_frame_rate);
+}
+#pragma endregion
+
+
+#pragma region Metadata generation
+/// <summary>Generates audio metadata for the stream</summary>
+/// <returns>A <see cref="WaveFormatEx" /> for the audio stream or null if a non-audio stream</returns>
+WaveFormatEx^ StreamInfo::GenerateMetadataAudio()
+{
+	WaveFormatEx^ format = nullptr;
+
+	if (this->StreamPtr->codec->codec_type == AVMEDIA_TYPE_AUDIO)
+	{
+		UInt16 sampleFormat = (UInt16)(LibAVAudioFormatExtender::ToAudioDataFormat(this->StreamPtr->codec->sample_fmt));
+		UInt16 channels = Convert::ToUInt16(this->StreamPtr->codec->channels);
+		UInt32 sampleRate = Convert::ToUInt32(this->StreamPtr->codec->sample_rate);
+		UInt16 bitsPerSample = LibAVAudioFormatExtender::GetBitsPerSample(this->StreamPtr->codec->sample_fmt);
+
+		UInt16 extraSize = 0;
+		UInt16 alignment = Convert::ToUInt16((bitsPerSample / 8) * channels);
+		UInt32 avgBytesPerSec = sampleRate * alignment;
+
+		format = gcnew WaveFormatEx(sampleFormat, channels, sampleRate, avgBytesPerSec, alignment, bitsPerSample, extraSize);
+	}
+
+	return format;
 }
 #pragma endregion
 

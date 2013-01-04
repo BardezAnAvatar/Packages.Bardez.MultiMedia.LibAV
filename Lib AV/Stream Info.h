@@ -3,13 +3,19 @@
 #ifndef _StreamInfo_H_
 #define _StreamInfo_H_
 
+
 extern "C"
 {
 	#include "libavformat\avformat.h"
 }
 
+
 #include "Codec Info.h"
 #include "Rational.h"
+
+
+using namespace Bardez::Projects::BasicStructures::Win32::Audio;
+
 
 namespace Bardez
 {
@@ -149,6 +155,14 @@ namespace Bardez
 						if (this->StreamPtr)
 							this->stream = IntPtr::Zero;
 					}
+				#pragma endregion
+
+
+				#pragma region Metadata generation
+				internal:
+					/// <summary>Generates audio metadata for the stream</summary>
+					/// <returns>A <see cref="WaveFormatEx" /> for the audio stream or null if a non-audio stream</returns>
+					WaveFormatEx^ GenerateMetadataAudio();
 				#pragma endregion
 				};
 			}
