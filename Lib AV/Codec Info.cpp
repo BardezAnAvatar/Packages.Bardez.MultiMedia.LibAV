@@ -1,5 +1,7 @@
 
+
 #include "Codec Info.h"
+
 
 using namespace System::Runtime::InteropServices;
 using namespace Bardez::Projects::MultiMedia::LibAV;
@@ -159,3 +161,4 @@ CodecInfo::CodecInfo(AVCodecContext* context)
 	this->CodecContextPtr = context;
 }
 #pragma endregion
+
