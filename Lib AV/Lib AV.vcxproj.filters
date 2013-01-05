@@ -228,9 +228,6 @@
     <ClInclude Include="Frame BGRA.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Rational.h">
-      <Filter>Header Files\Wrapper\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Stream Info.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
@@ -268,6 +265,9 @@
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
     <ClInclude Include="LibAV Audio Format Extender.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Rational Extender.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
   </ItemGroup>

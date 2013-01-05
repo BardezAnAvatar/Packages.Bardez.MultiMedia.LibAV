@@ -148,7 +148,7 @@
     <ClInclude Include="LibAV Pixel Format.h" />
     <ClInclude Include="Media Type.h" />
     <ClInclude Include="LibAV Pixel Format Extender.h" />
-    <ClInclude Include="Rational.h" />
+    <ClInclude Include="Rational Extender.h" />
     <ClInclude Include="Resize Options.h" />
     <ClInclude Include="Stream Buffers.h" />
     <ClInclude Include="Stream Info.h" />
