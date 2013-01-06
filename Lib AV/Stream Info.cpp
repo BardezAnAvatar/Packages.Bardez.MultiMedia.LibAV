@@ -2,10 +2,13 @@
 
 #include "Stream Info.h"
 #include "LibAV Audio Format Extender.h"
+#include "LibAV Pixel Format Extender.h"
+#include "Rational Extender.h"
 
 
 using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
+using namespace Bardez::Projects::Multimedia::MediaBase;
 
 
 #pragma region Properties
@@ -30,13 +33,13 @@ CodecInfo^ StreamInfo::Codec::get()
 /// <summary>Rational number representation of the stream's frame rate</summary>
 Rational^ StreamInfo::FrameRate::get()
 {
-	return gcnew Rational(this->StreamPtr->r_frame_rate);
+	return RationalExtender::ToRational(this->StreamPtr->r_frame_rate);
 }
 
 /// <summary>Rational number base of all timestamps</summary>
 Rational^ StreamInfo::TimeBase::get()
 {
-	return gcnew Rational(this->StreamPtr->time_base);
+	return RationalExtender::ToRational(this->StreamPtr->time_base);
 }
 
 /// <summary>Timestamp for the start time of this stream</summary>
@@ -61,13 +64,13 @@ System::Int64 StreamInfo::FrameCount::get()
 /// <summary>Rational number representation of the aspect ratio</summary>
 Rational^ StreamInfo::AspectRatio::get()
 {
-	return gcnew Rational(this->StreamPtr->sample_aspect_ratio);
+	return RationalExtender::ToRational(this->StreamPtr->sample_aspect_ratio);
 }
 
 /// <summary>Rational number representation of the stream's average frame rate</summary>
 Rational^ StreamInfo::FrameRateAverage::get()
 {
-	return gcnew Rational(this->StreamPtr->avg_frame_rate);
+	return RationalExtender::ToRational(this->StreamPtr->avg_frame_rate);
 }
 #pragma endregion
 
@@ -94,6 +97,31 @@ WaveFormatEx^ StreamInfo::GenerateMetadataAudio()
 	}
 
 	return format;
+}
+
+/// <summary>Generates image metadata for the stream</summary>
+/// <returns>An <see cref="ImageMetadata" /> for the video stream or null if a non-video stream</returns>
+ImageMetadata^ StreamInfo::GenerateMetadataImage()
+{
+	ImageMetadata^ metadata = nullptr;
+
+	if (this->StreamPtr->codec->codec_type == AVMEDIA_TYPE_VIDEO)
+	{
+		Int32 width = this->StreamPtr->codec->width;
+		Int32 height = this->StreamPtr->codec->height;
+		Int32 rowBytePadding = 0;	//I believe that LibAV does full data compacting and does not provide any row packing
+		Int32 heightRowPadding = 0;	//I believe that LibAV does full data compacting and does not provide any row packing
+		Int32 bitsPerPixel = this->StreamPtr->codec->bits_per_raw_sample;
+		Int32 originX = 0;
+		Int32 originY = 0;
+		Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat format = LibAVPixelFormatExtender::ToPixelFormat((LibAVPixelFormat)(this->StreamPtr->codec->pix_fmt));
+		ScanLineOrder order = ScanLineOrder::TopDown;
+		Rational^ aspectRatio = RationalExtender::ToRational(this->StreamPtr->codec->sample_aspect_ratio);
+
+		metadata = gcnew ImageMetadata(height, width, rowBytePadding, heightRowPadding, bitsPerPixel, originX, originY, format, order, aspectRatio, nullptr);
+	}
+
+	return metadata;
 }
 #pragma endregion
 

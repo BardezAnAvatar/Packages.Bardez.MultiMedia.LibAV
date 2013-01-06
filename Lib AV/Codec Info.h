@@ -3,16 +3,21 @@
 #ifndef _Components_Codec_Info_H_
 #define _Components_Codec_Info_H_
 
+
 extern "C"
 {
 	#include "libavcodec\avcodec.h"
 }
 
+
 #include "Audio Sample Format.h"
 #include "LibAV Codec ID.h"
 #include "Media Type.h"
 #include "LibAV Pixel Format.h"
-#include "Rational.h"
+
+
+using namespace Bardez::Projects::BasicStructures::Math;
+
 
 namespace Bardez
 {

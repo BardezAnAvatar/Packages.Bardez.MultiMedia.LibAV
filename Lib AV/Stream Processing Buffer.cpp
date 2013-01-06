@@ -1,9 +1,12 @@
 
+
 #include "Stream Processing Buffer.h"
+#include "Rational Extender.h"
 
 
 using namespace System;
 using namespace System::Threading;
+using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -33,14 +36,14 @@ CodecInfo^ StreamProcessingBuffer<FrameType>::Codec::get()
 generic<class FrameType> where FrameType : FrameAV, ref class
 Rational^ StreamProcessingBuffer<FrameType>::FrameRate::get()
 {
-	return gcnew Rational(this->StreamPtr->r_frame_rate);
+	return RationalExtender::ToRational(this->StreamPtr->r_frame_rate);
 }
 
 /// <summary>Rational number base of all timestamps</summary>
 generic<class FrameType> where FrameType : FrameAV, ref class
 Rational^ StreamProcessingBuffer<FrameType>::TimeBase::get()
 {
-	return gcnew Rational(this->StreamPtr->time_base);
+	return RationalExtender::ToRational(this->StreamPtr->time_base);
 }
 
 /// <summary>Timestamp for the start time of this stream</summary>
@@ -69,14 +72,14 @@ Int64 StreamProcessingBuffer<FrameType>::FrameCount::get()
 generic<class FrameType> where FrameType : FrameAV, ref class
 Rational^ StreamProcessingBuffer<FrameType>::AspectRatio::get()
 {
-	return gcnew Rational(this->StreamPtr->sample_aspect_ratio);
+	return RationalExtender::ToRational(this->StreamPtr->sample_aspect_ratio);
 }
 
 /// <summary>Rational number representation of the stream's average frame rate</summary>
 generic<class FrameType> where FrameType : FrameAV, ref class
 Rational^ StreamProcessingBuffer<FrameType>::FrameRateAverage::get()
 {
-	return gcnew Rational(this->StreamPtr->avg_frame_rate);
+	return RationalExtender::ToRational(this->StreamPtr->avg_frame_rate);
 }
 
 /// <summary>Exposes the size of the buffer available to be read.</summary>
@@ -99,7 +102,7 @@ Boolean StreamProcessingBuffer<FrameType>::BufferFull::get()
 generic<class FrameType> where FrameType : FrameAV, ref class
 TimeSpan StreamProcessingBuffer<FrameType>::StreamStartTime::get()
 {
-	return Rational::GetTimeSpan(this->TimeBase, this->StartTime);
+	return RationalExtender::GetTimeSpan(this->TimeBase, this->StartTime);
 }
 
 /// <summary>Exposes the end time as a time span</summary>
@@ -107,7 +110,7 @@ generic<class FrameType> where FrameType : FrameAV, ref class
 TimeSpan StreamProcessingBuffer<FrameType>::StreamEndTime::get()
 {
 	TimeSpan ts = this->StreamStartTime;
-	ts += Rational::GetTimeSpan(this->TimeBase, this->Duration);
+	ts += RationalExtender::GetTimeSpan(this->TimeBase, this->Duration);
 	return ts;
 }
 #pragma endregion

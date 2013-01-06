@@ -11,10 +11,12 @@ extern "C"
 
 
 #include "Codec Info.h"
-#include "Rational.h"
 
 
+using namespace System;
+using namespace Bardez::Projects::BasicStructures::Math;
 using namespace Bardez::Projects::BasicStructures::Win32::Audio;
+using namespace Bardez::Projects::Multimedia::MediaBase::Frame::Image;
 
 
 namespace Bardez
@@ -163,6 +165,10 @@ namespace Bardez
 					/// <summary>Generates audio metadata for the stream</summary>
 					/// <returns>A <see cref="WaveFormatEx" /> for the audio stream or null if a non-audio stream</returns>
 					WaveFormatEx^ GenerateMetadataAudio();
+
+					/// <summary>Generates image metadata for the stream</summary>
+					/// <returns>An <see cref="ImageMetadata" /> for the video stream or null if a non-video stream</returns>
+					ImageMetadata^ GenerateMetadataImage();
 				#pragma endregion
 				};
 			}

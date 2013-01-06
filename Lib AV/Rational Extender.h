@@ -31,7 +31,7 @@ namespace Bardez
 					/// <param name="source">Unmanaged AVRational to copy from</param>
 					[ExtensionAttribute]
 					static Rational^ ToRational(AVRational source)
-					
+					{
 						return gcnew Rational(source.num, source.den);
 					}
 
@@ -60,7 +60,7 @@ namespace Bardez
 						if (timeStamp == 0x8000000000000000)	//AV_NOPTS_VALUE avutil.h@ 279
 							timeStamp = 0;
 
-						Double base = timeBase->Value;
+						Double base = timeBase->ValueDouble;
 						Double seconds = base * timeStamp;
 						Double ticks = seconds * 10000000;	//seconds to ticks of 100 nanoseconds
 						return TimeSpan(Convert::ToInt64(ticks));

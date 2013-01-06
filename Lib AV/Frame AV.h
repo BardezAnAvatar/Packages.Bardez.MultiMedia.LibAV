@@ -3,14 +3,16 @@
 #ifndef _Frame_H_
 #define _Frame_H_
 
-using namespace System;
 
 extern "C"
 {
 	#include "libavcodec\avcodec.h"
 }
 
-#include "Rational.h"
+
+using namespace System;
+using namespace Bardez::Projects::BasicStructures::Math;
+
 
 namespace Bardez
 {

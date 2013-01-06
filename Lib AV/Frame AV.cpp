@@ -1,8 +1,11 @@
 
 
 #include "Frame AV.h"
+#include "Rational Extender.h"
+
 
 using namespace System;
+using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -24,13 +27,14 @@ FrameAV::FrameAV(Boolean keyFrame, AVPacket* packet)
 /// <param name="timeBase">Rational number base time of the time stamp</param>
 TimeSpan FrameAV::GetPresentationStartTimeSpan(Rational^ timeBase)
 {
-	return Rational::GetTimeSpan(timeBase, this->TimeStampPresentation);
+	return RationalExtender::GetTimeSpan(timeBase, this->TimeStampPresentation);
 }
 
 /// <summary>Retrieves a System::TimeSpan instance based off of the timeBase and TimeStampDecode</summary>
 /// <param name="timeBase">Rational number base time of the time stamp</param>
 TimeSpan FrameAV::GetDecodeTimeSpan(Rational^ timeBase)
 {
-	return Rational::GetTimeSpan(timeBase, this->TimeStampDecode);
+	return RationalExtender::GetTimeSpan(timeBase, this->TimeStampDecode);
 }
 #pragma endregion
+

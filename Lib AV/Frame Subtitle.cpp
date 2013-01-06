@@ -1,9 +1,11 @@
 
 
 #include "Frame Subtitle.h"
+#include "Rational Extender.h"
 
 
 using namespace System;
+using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -12,7 +14,7 @@ using namespace Bardez::Projects::MultiMedia::LibAV;
 /// <param name="timeBase">Rational number base time of the time stamp</param>
 TimeSpan FrameSubtitle::GetPresentationEndTimeSpan(Rational^ timeBase)
 {
-	return Rational::GetTimeSpan(timeBase, this->TimeStampPresentation + this->TimeStampDuration);
+	return RationalExtender::GetTimeSpan(timeBase, this->TimeStampPresentation + this->TimeStampDuration);
 }
 #pragma endregion
 

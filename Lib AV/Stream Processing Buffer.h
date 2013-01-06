@@ -3,17 +3,21 @@
 #ifndef _Stream_Processing_Buffer_H_
 #define _Stream_Processing_Buffer_H_
 
+
 extern "C"
 {
 	#include "libavformat\avformat.h"
 }
 
+
 #include "Codec Info.h"
 #include "Frame AV.h"
-#include "Rational.h"
+
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace Bardez::Projects::BasicStructures::Math;
+
 
 namespace Bardez
 {

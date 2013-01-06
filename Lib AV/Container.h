@@ -14,7 +14,6 @@ extern "C"
 }
 
 #include "Media Type.h"
-#include "Rational.h"
 #include "Stream Buffers.h"
 #include "Stream Info.h"
 #include "Stream Processing Info.h"
@@ -22,6 +21,7 @@ extern "C"
 
 
 using namespace System::Collections::Generic;
+using namespace Bardez::Projects::BasicStructures::Math;
 
 
 namespace Bardez

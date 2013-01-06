@@ -1,9 +1,12 @@
 
 
 #include "Codec Info.h"
+#include "Rational Extender.h"
 
 
 using namespace System::Runtime::InteropServices;
+using namespace Bardez::Projects::BasicStructures::Math;
+using namespace Bardez::Projects::Multimedia::LibAV;
 using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
@@ -58,7 +61,7 @@ System::Int32 CodecInfo::BitRate::get()
 /// </summary>
 Rational^ CodecInfo::TimeBase::get()
 {
-	return gcnew Rational(this->CodecContextPtr->time_base);
+	return RationalExtender::ToRational(this->CodecContextPtr->time_base);
 }
 
 /// <summary>
@@ -129,7 +132,7 @@ Bardez::Projects::MultiMedia::LibAV::LibAVPixelFormat CodecInfo::PixelDataFormat
 /// <summary>Aspect ratio of the pixels</summary>
 Rational^ CodecInfo::SampleAspectRatio::get()
 {
-	return gcnew Rational(this->CodecContextPtr->sample_aspect_ratio);
+	return RationalExtender::ToRational(this->CodecContextPtr->sample_aspect_ratio);
 }
 
 /// <summary>Sample rate of audio</summary>
