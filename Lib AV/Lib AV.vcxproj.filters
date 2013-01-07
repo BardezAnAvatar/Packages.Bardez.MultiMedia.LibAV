@@ -270,6 +270,12 @@
     <ClInclude Include="Rational Extender.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Frame LibAV.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame LibAV Audio.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Generic notes.txt">
@@ -320,6 +326,12 @@
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
     <ClCompile Include="LibAV Audio Format Extender.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame LibAV.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame LibAV Audio.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
   </ItemGroup>

@@ -82,6 +82,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Audio Sample Format.h" />
+    <ClInclude Include="Frame LibAV Audio.h" />
+    <ClInclude Include="Frame LibAV.h" />
     <ClInclude Include="Frame Subtitle Text.h" />
     <ClInclude Include="Frame Subtitle.h" />
     <ClInclude Include="LibAV Audio Format Extender.h" />
@@ -170,6 +172,8 @@
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Frame Audio Int16.cpp" />
     <ClCompile Include="Frame AV.cpp" />
+    <ClCompile Include="Frame LibAV Audio.cpp" />
+    <ClCompile Include="Frame LibAV.cpp" />
     <ClCompile Include="Frame Subtitle.cpp" />
     <ClCompile Include="LibAV Audio Format Extender.cpp" />
     <ClCompile Include="LibAV Picture.cpp" />
