@@ -39,7 +39,7 @@ namespace Bardez
 					/// <summary>Indicated whether this frame is a keyframe or not</summary>
 					Boolean keyFrame;
 
-					///<summary>Reference to the streaming metadata info</summary>
+					/// <summary>Reference to the streaming metadata info</summary>
 					StreamingMetadata^ metadataStreaming;
 				#pragma endregion
 
@@ -68,7 +68,7 @@ namespace Bardez
 
 				#pragma region IMultimediaStreamingFrame Properties
 				public:
-					///<summary>The streaming metadata info</summary>
+					/// <summary>The streaming metadata info</summary>
 					virtual property Bardez::Projects::Multimedia::MediaBase::Frame::StreamingMetadata^ StreamingMetadata
 					{
 						Bardez::Projects::Multimedia::MediaBase::Frame::StreamingMetadata^ get();
@@ -78,7 +78,7 @@ namespace Bardez
 
 				#pragma region IMultimediaFrame Properties
 				public:
-					///<summary>The streaming metadata info</summary>
+					/// <summary>The streaming metadata info</summary>
 					virtual property Stream^ Data
 					{
 						Stream^ get() abstract;

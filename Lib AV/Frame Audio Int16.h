@@ -21,7 +21,7 @@ namespace Bardez
 				{
 				#pragma region Fields
 				public:
-					///<summary>Data of the decoded frame (audio)</summary>
+					/// <summary>Data of the decoded frame (audio)</summary>
 					array<Byte>^ Data;
 
 					/// <summary>Count of channels to this audio stream</summary>
