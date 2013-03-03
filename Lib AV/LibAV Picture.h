@@ -3,23 +3,28 @@
 #ifndef _Lib_AV_Picture_H_
 #define _Lib_AV_Picture_H_
 
+
 extern "C"
 {
 	#include "libavcodec\avcodec.h"
 	#include "libavutil\pixfmt.h"
 }
+
+
 #include "LibAV Pixel Format.h"
 #include "Error Helper.h"
 #include "LibAV Picture Detail.h"
 
+
 using namespace System;
 using namespace System::IO;
+
 
 namespace Bardez
 {
 	namespace Projects
 	{
-		namespace MultiMedia
+		namespace Multimedia
 		{
 			namespace LibAV
 			{
@@ -125,6 +130,7 @@ namespace Bardez
 					{
 						this->detail = LibAVPictureDetail::Build();
 						this->DisposeUnmanaged();
+						GC::SuppressFinalize(this);
 					}
 					
 					/// <summary>Destructor</summary>
