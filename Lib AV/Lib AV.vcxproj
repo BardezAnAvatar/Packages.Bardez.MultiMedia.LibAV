@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClInclude Include="Audio Sample Format.h" />
     <ClInclude Include="Frame LibAV Audio.h" />
+    <ClInclude Include="Frame LibAV Video.h" />
     <ClInclude Include="Frame LibAV.h" />
     <ClInclude Include="Frame Subtitle Text.h" />
     <ClInclude Include="Frame Subtitle.h" />
@@ -94,6 +95,9 @@
     <ClInclude Include="Frame Audio Int16.h" />
     <ClInclude Include="Frame AV.h" />
     <ClInclude Include="Frame BGRA.h" />
+    <ClInclude Include="LibAV Filter Graph Buffer.h" />
+    <ClInclude Include="LibAV Filter Graph VFlip.h" />
+    <ClInclude Include="LibAV Filter Graph.h" />
     <ClInclude Include="LibAV Picture.h" />
     <ClInclude Include="libavcodec\avcodec.h" />
     <ClInclude Include="libavcodec\avfft.h" />
@@ -103,6 +107,15 @@
     <ClInclude Include="libavcodec\vdpau.h" />
     <ClInclude Include="libavcodec\version.h" />
     <ClInclude Include="libavcodec\xvmc.h" />
+    <ClInclude Include="libavfilter\avfilter.h" />
+    <ClInclude Include="libavfilter\avfiltergraph.h" />
+    <ClInclude Include="libavfilter\buffersrc.h" />
+    <ClInclude Include="libavfilter\drawutils.h" />
+    <ClInclude Include="libavfilter\gradfun.h" />
+    <ClInclude Include="libavfilter\internal.h" />
+    <ClInclude Include="libavfilter\version.h" />
+    <ClInclude Include="libavfilter\vsrc_buffer.h" />
+    <ClInclude Include="libavfilter\yadif.h" />
     <ClInclude Include="libavformat\avformat.h" />
     <ClInclude Include="libavformat\avio.h" />
     <ClInclude Include="libavformat\version.h" />
@@ -173,9 +186,12 @@
     <ClCompile Include="Frame Audio Int16.cpp" />
     <ClCompile Include="Frame AV.cpp" />
     <ClCompile Include="Frame LibAV Audio.cpp" />
+    <ClCompile Include="Frame LibAV Video.cpp" />
     <ClCompile Include="Frame LibAV.cpp" />
     <ClCompile Include="Frame Subtitle.cpp" />
     <ClCompile Include="LibAV Audio Format Extender.cpp" />
+    <ClCompile Include="LibAV Filter Graph Buffer.cpp" />
+    <ClCompile Include="LibAV Filter Graph.cpp" />
     <ClCompile Include="LibAV Picture.cpp" />
     <ClCompile Include="LibAV Pixel Format Extender.cpp" />
     <ClCompile Include="Stream Buffers.cpp" />

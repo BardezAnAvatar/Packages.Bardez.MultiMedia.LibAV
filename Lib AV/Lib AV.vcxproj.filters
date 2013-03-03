@@ -13,18 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\libavformat">
-      <UniqueIdentifier>{16ca9086-0b38-4905-b34b-fc61f1a85ca9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libavutil">
-      <UniqueIdentifier>{9d1cd416-bd22-46c7-a388-e5b2c7ac962a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libavcodec">
-      <UniqueIdentifier>{78413dd8-e57b-494e-be1c-4a4a80cfa45b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libswscale">
-      <UniqueIdentifier>{96e516dc-62d8-4855-83df-88d2236ef8c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Wrapper">
       <UniqueIdentifier>{7d1a2790-b867-4314-8e76-f0e21f47a28d}</UniqueIdentifier>
     </Filter>
@@ -39,6 +27,21 @@
     </Filter>
     <Filter Include="Source Files\Wrapper\Components">
       <UniqueIdentifier>{529602b4-c579-4c79-ae8e-a84bcd7beab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavcodec">
+      <UniqueIdentifier>{78413dd8-e57b-494e-be1c-4a4a80cfa45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavfilter">
+      <UniqueIdentifier>{57a6ccca-4f1c-40a2-9905-35ad5bfc6c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavformat">
+      <UniqueIdentifier>{16ca9086-0b38-4905-b34b-fc61f1a85ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libavutil">
+      <UniqueIdentifier>{9d1cd416-bd22-46c7-a388-e5b2c7ac962a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libswscale">
+      <UniqueIdentifier>{96e516dc-62d8-4855-83df-88d2236ef8c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +279,45 @@
     <ClInclude Include="Frame LibAV Audio.h">
       <Filter>Header Files\Wrapper\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Frame LibAV Video.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\vsrc_buffer.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\yadif.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\avfilter.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\avfiltergraph.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\buffersrc.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\drawutils.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\gradfun.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\internal.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="libavfilter\version.h">
+      <Filter>Header Files\libavfilter</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Filter Graph.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Filter Graph Buffer.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LibAV Filter Graph VFlip.h">
+      <Filter>Header Files\Wrapper\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Generic notes.txt">
@@ -332,6 +374,15 @@
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
     <ClCompile Include="Frame LibAV Audio.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame LibAV Video.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LibAV Filter Graph.cpp">
+      <Filter>Source Files\Wrapper\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LibAV Filter Graph Buffer.cpp">
       <Filter>Source Files\Wrapper\Components</Filter>
     </ClCompile>
   </ItemGroup>
