@@ -14,7 +14,7 @@ namespace Bardez
 {
 	namespace Projects
 	{
-		namespace MultiMedia
+		namespace Multimedia
 		{
 			namespace LibAV
 			{
@@ -31,6 +31,9 @@ namespace Bardez
 
 					/// <summary>Name of the scaling library</summary>
 					literal System::String^ LibSwScale = "libswscale";
+
+					/// <summary>Name of the filter library</summary>
+					literal System::String^ LibAvFilter = "libavfilter";
 				#pragma endregion
 
 
