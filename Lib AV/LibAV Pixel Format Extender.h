@@ -8,8 +8,7 @@
 
 
 using namespace System::Runtime::CompilerServices;
-using namespace Bardez::Projects::MultiMedia::LibAV;
-using namespace Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums;
+using namespace Bardez::Projects::Multimedia::LibAV;
 
 
 namespace Bardez
