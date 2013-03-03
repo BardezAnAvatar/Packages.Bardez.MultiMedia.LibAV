@@ -23,6 +23,7 @@ namespace Bardez
 		{
 			namespace LibAV
 			{
+				/// <summary>Provides conversion and generation methods for <see cref="Rational" /> and <see cref="AVRational" /></summary>
 				[ExtensionAttribute]
 				public ref class RationalExtender abstract sealed
 				{
