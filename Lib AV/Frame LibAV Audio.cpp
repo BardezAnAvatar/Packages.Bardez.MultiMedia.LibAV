@@ -5,46 +5,26 @@
 
 
 using namespace System::IO;
+using namespace System::Runtime::InteropServices;
 using namespace Bardez::Projects::BasicStructures::Win32::Audio;
 using namespace Bardez::Projects::Multimedia::LibAV;
 
 
-#pragma region IMultimediaFrame Properties
-/// <summary>The streaming metadata info</summary>
-Stream^ FrameLibAVAudio::Data::get()
-{
-	IntPtr unmanagedData = IntPtr(this->PtrPicture->data[0]);
-	Int32 length = this->FrameDataSize;
-
-	Byte* pointer = reinterpret_cast<Byte*>(unmanagedData.ToPointer());	//get an internal pointer?
-	UnmanagedMemoryStream^ dataStream = gcnew UnmanagedMemoryStream(pointer, length);
-
-	return dataStream;
-}
-#pragma endregion
-
-
 #pragma region Properties
-/// <summary>Pointer exposure of the passed in construction AVFrame</summary>
-AVPicture* FrameLibAVAudio::PtrPicture::get()
-{
-	return reinterpret_cast<AVPicture*>(this->ptrAVPicture.ToPointer());
-}
-
-/// <summary>Pointer exposure of the passed in construction AVFrame</summary>
-void FrameLibAVAudio::PtrPicture::set(AVPicture* value)
-{
-	this->ptrAVPicture = IntPtr(value);
-}
-
 /// <summary>Size of the audio sample data</summary>
 Int32 FrameLibAVAudio::FrameDataSize::get()
 {
-	UInt16 formatByteSize = this->metadataAudio->BitsPerSample / 8;
-	UInt16 channels = this->metadataAudio->NumberChannels;
+	/* original, probably hacked and assumption-based: */
+	//UInt16 formatByteSize = this->metadataAudio->BitsPerSample / 8;
+	//UInt16 channels = this->metadataAudio->NumberChannels;
 
-	Int32 dataSize = Convert::ToInt32(this->sampleCount * channels * formatByteSize);
-	return dataSize;
+	//Int32 dataSize = Convert::ToInt32(this->sampleCount * channels * formatByteSize);
+	//return dataSize;
+
+
+	
+	/* newer LibAV-based: */
+	return this->frameDataSize;
 }
 #pragma endregion
 
@@ -68,33 +48,15 @@ FrameLibAVAudio::FrameLibAVAudio(AVFrame* source, AVPacket* packet, AVStream* st
 	this->metadataAudio = gcnew WaveFormatEx((UInt16)(format), channels, sampleRate, avgBytesPerSec, alignment, bitsPerSample, 0);
 
 
-	//declare a new picture copy with which to access data
-	AVPicture* picture = new AVPicture;
-	av_picture_copy(picture, reinterpret_cast<AVPicture*>(source), stream->codec->pix_fmt, stream->codec->width, stream->codec->height);	//see avcodec.h @ 4263
-	this->ptrAVPicture = IntPtr(picture);
-}
-#pragma endregion
+	//store the frame size
+	//per AVFrame definition, only value is 0th index for Audio frames; see avcodec.h, line 941
+	//	For planar audio, each channel has a separate data pointer, and all are the same size;
+	this->frameDataSize = source->linesize[0];
+	//TODO: figure something out to determine the size of the data for planar audio
 
 
-#pragma region Destruction
-/// <summary>Destructor</summary>
-/// <remarks>Dispose()</remarks>
-FrameLibAVAudio::~FrameLibAVAudio()
-{
-	this->DisposeUnmanaged();
-	GC::SuppressFinalize(this);
-}
-
-/// <summary>Destructor logic, disposes the object</summary>
-void FrameLibAVAudio::DisposeUnmanaged()
-{
-	FrameLibAV::DisposeUnmanaged();
-
-	if (this->PtrPicture != NULL)
-	{
-		avpicture_free(PtrPicture);	//see avcodec.h @ 4198
-		this->PtrPicture = NULL;
-	}
+	//Copy the data
+	this->CopyData(source);
 }
 #pragma endregion
 
@@ -105,6 +67,22 @@ void FrameLibAVAudio::DisposeUnmanaged()
 WaveFormatEx^ FrameLibAVAudio::GetWaveFormat()
 {
 	return this->metadataAudio;
+}
+#pragma endregion
+
+
+#pragma region Helper methods
+/// <summary>Copies the data from <see cref="source" /> to <see cref="frameData" /></summary>
+/// <remarks>Data is treated differently between Audio and Video and Subtitle</remarks>
+void FrameLibAVAudio::CopyData(AVFrame* source)
+{
+	if (source != NULL && source->data != NULL && source->linesize != NULL) 
+	{
+		Int32 size = this->FrameDataSize;
+		this->frameData = gcnew array<Byte>(size);
+		
+		Marshal::Copy(IntPtr(source->data[0]), this->frameData, 0, size);
+	}
 }
 #pragma endregion
 
