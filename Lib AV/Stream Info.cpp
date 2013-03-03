@@ -7,8 +7,8 @@
 
 
 using namespace Bardez::Projects::Multimedia::LibAV;
-using namespace Bardez::Projects::MultiMedia::LibAV;
 using namespace Bardez::Projects::Multimedia::MediaBase;
+using namespace Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums;
 
 
 #pragma region Properties
