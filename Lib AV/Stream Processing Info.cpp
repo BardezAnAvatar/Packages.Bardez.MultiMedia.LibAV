@@ -3,7 +3,7 @@
 
 using namespace System;
 using namespace System::Threading;
-using namespace Bardez::Projects::MultiMedia::LibAV;
+using namespace Bardez::Projects::Multimedia::LibAV;
 
 
 #pragma region Properties

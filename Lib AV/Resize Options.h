@@ -9,7 +9,7 @@ namespace Bardez
 {
 	namespace Projects
 	{
-		namespace MultiMedia
+		namespace Multimedia
 		{
 			namespace LibAV
 			{

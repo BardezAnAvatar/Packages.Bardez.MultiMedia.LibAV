@@ -5,8 +5,7 @@
 
 using namespace System;
 using namespace System::Collections::Generic;
-using namespace Bardez::Projects::MultiMedia::LibAV;
-
+using namespace Bardez::Projects::Multimedia::LibAV;
 
 
 #pragma region Properties

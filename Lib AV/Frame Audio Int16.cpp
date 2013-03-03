@@ -5,7 +5,7 @@
 
 using namespace System;
 using namespace System::Runtime::InteropServices;
-using namespace Bardez::Projects::MultiMedia::LibAV;
+using namespace Bardez::Projects::Multimedia::LibAV;
 
 
 #pragma region Helpers

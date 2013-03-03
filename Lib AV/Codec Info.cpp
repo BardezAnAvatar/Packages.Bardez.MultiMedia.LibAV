@@ -7,7 +7,6 @@
 using namespace System::Runtime::InteropServices;
 using namespace Bardez::Projects::BasicStructures::Math;
 using namespace Bardez::Projects::Multimedia::LibAV;
-using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
 #pragma region Properties
@@ -35,9 +34,9 @@ MediaType CodecInfo::CodecType::get()
 }
 
 /// <summary>Unique ID of the codec within Lib AV</summary>
-Bardez::Projects::MultiMedia::LibAV::LibAVCodecID CodecInfo::ID::get()
+Bardez::Projects::Multimedia::LibAV::LibAVCodecID CodecInfo::ID::get()
 {
-	return (Bardez::Projects::MultiMedia::LibAV::LibAVCodecID)(this->CodecContextPtr->codec_id);
+	return (Bardez::Projects::Multimedia::LibAV::LibAVCodecID)(this->CodecContextPtr->codec_id);
 }
 
 /// <summary>(Possibly erroneously) converted FourCC code from a container</summary>
@@ -124,9 +123,9 @@ System::Int32 CodecInfo::CodedHeight::get()
 }
 
 /// <summary>Output pixel data format</summary>
-Bardez::Projects::MultiMedia::LibAV::LibAVPixelFormat CodecInfo::PixelDataFormat::get()
+Bardez::Projects::Multimedia::LibAV::LibAVPixelFormat CodecInfo::PixelDataFormat::get()
 {
-	return (Bardez::Projects::MultiMedia::LibAV::LibAVPixelFormat)(this->CodecContextPtr->pix_fmt);
+	return (Bardez::Projects::Multimedia::LibAV::LibAVPixelFormat)(this->CodecContextPtr->pix_fmt);
 }
 
 /// <summary>Aspect ratio of the pixels</summary>

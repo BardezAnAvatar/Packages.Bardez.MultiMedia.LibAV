@@ -6,7 +6,6 @@
 
 using namespace System;
 using namespace Bardez::Projects::Multimedia::LibAV;
-using namespace Bardez::Projects::MultiMedia::LibAV;
 
 
 #pragma region Construction

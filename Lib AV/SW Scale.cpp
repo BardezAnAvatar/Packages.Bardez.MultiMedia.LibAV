@@ -5,7 +5,7 @@
 
 using namespace System;
 using namespace System::IO;
-using namespace Bardez::Projects::MultiMedia::LibAV;
+using namespace Bardez::Projects::Multimedia::LibAV;
 
 
 /// <summary>Determines if the format is supported for input</summary>
@@ -115,4 +115,3 @@ Int32 SWScale::Transform(MemoryStream^ sourceData, [System::Runtime::InteropServ
 
 	return result;
 }
-
