@@ -4,6 +4,8 @@
 #include "Rational Extender.h"
 
 
+using namespace System;
+using namespace System::IO;
 using namespace Bardez::Projects::Multimedia::LibAV;
 
 
@@ -27,9 +29,18 @@ Boolean FrameLibAV::KeyFrame::get()
 }
 
 /// <summary>The streaming metadata info</summary>
-StreamingMetadata^ FrameLibAV::StreamingMetadata::get()
+StreamingMetadata^ FrameLibAV::MetadataStreaming::get()
 {
 	return this->metadataStreaming;
+}
+#pragma endregion
+
+
+#pragma region IMultimediaFrame Properties
+/// <summary>The Stream exposed for Frame data</summary>
+Stream^ FrameLibAV::Data::get()
+{
+	return gcnew MemoryStream(this->frameData);
 }
 #pragma endregion
 
@@ -54,11 +65,11 @@ FrameLibAV::FrameLibAV(AVFrame* source, AVPacket* packet, AVStream* stream)
 	TimeSpan durationTimeSpan = RationalExtender::GetTimeSpan(timeBase, packet->duration);
 	TimeSpan endTimeStamp = this->presentationTimeStamp + durationTimeSpan;
 
-	//which variant to use?
+	//which variant to use? Not even sure why I need it...
 	Rational^ sampleRate = gcnew Rational(timeBase->Denominator, timeBase->Numerator);
 	//Rational^ sampleRate = RationalExtender::ToRational(stream->avg_frame_rate);
 
-	this->metadataStreaming = gcnew Bardez::Projects::Multimedia::MediaBase::Frame::StreamingMetadata(sampleRate, this->presentationTimeStamp, endTimeStamp);
+	this->metadataStreaming = gcnew StreamingMetadata(sampleRate, this->presentationTimeStamp, endTimeStamp);
 }
 #pragma endregion
 
@@ -75,7 +86,6 @@ FrameLibAV::~FrameLibAV()
 /// <summary>Destructor logic, disposes the object</summary>
 void FrameLibAV::DisposeUnmanaged()
 {
-	this->metadataStreaming = nullptr;
 }
 #pragma endregion
 
