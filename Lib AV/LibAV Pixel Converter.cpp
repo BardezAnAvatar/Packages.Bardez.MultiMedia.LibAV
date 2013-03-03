@@ -1,7 +1,7 @@
 
 
 #include "SW Scale.h"
-#include "SWScale Pixel Converter.h"
+#include "LibAV Pixel Converter.h"
 #include "LibAV Filter Graph.h"
 #include "LibAV Pixel Format.h"
 #include "LibAV Pixel Format Extender.h"
@@ -26,7 +26,7 @@ using namespace Bardez::Projects::Multimedia::MediaBase::Video::Pixels;
 /// <param name="sourceHeight">Indicates the source height of the image data</param>
 /// <param name="decodedBitDepth">The bits per pixel once decoded</param>
 /// <returns>New byte data</returns>
-MemoryStream^ SWScalePixelConverter::ConvertData(MemoryStream^ data, Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat sourceFormat, Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat destinationFormat, Int32 horizontalPacking, Int32 verticalPacking, Int32 sourceWidth, Int32 sourceHeight, Int32 decodedBitDepth)
+MemoryStream^ LibAVPixelConverter::ConvertData(MemoryStream^ data, Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat sourceFormat, Bardez::Projects::Multimedia::MediaBase::Data::Pixels::Enums::PixelFormat destinationFormat, Int32 horizontalPacking, Int32 verticalPacking, Int32 sourceWidth, Int32 sourceHeight, Int32 decodedBitDepth)
 {
     MemoryStream^ result = nullptr;
 
@@ -59,7 +59,7 @@ MemoryStream^ SWScalePixelConverter::ConvertData(MemoryStream^ data, Bardez::Pro
 /// <param name="metadata">Image metadata for the source frame</param>
 /// <returns>The vertically flipped data</returns>
 /// <remarks>Uses the current pixel data's packing, not the destination's</remarks>
-MemoryStream^ SWScalePixelConverter::FlipVertical(MemoryStream^ data, ImageMetadata^ metadata)
+MemoryStream^ LibAVPixelConverter::FlipVertical(MemoryStream^ data, ImageMetadata^ metadata)
 {
 	//create a graph
 	LibAVFilterGraphVFlip^ graph = gcnew LibAVFilterGraphVFlip(metadata);
@@ -90,7 +90,7 @@ MemoryStream^ SWScalePixelConverter::FlipVertical(MemoryStream^ data, ImageMetad
 /// <param name="destPackingHorizontal">target horizontal packing</param>
 /// <param name="destPackingVertical">target vertical packing</param>
 /// <returns>The adjusted packed bytes</returns>
-MemoryStream^ SWScalePixelConverter::AdjustForPacking(MemoryStream^ data, ImageMetadata^ metadata, Int32 destPackingHorizontal, Int32 destPackingVertical)
+MemoryStream^ LibAVPixelConverter::AdjustForPacking(MemoryStream^ data, ImageMetadata^ metadata, Int32 destPackingHorizontal, Int32 destPackingVertical)
 {
 	//HACK: This may or may not be a cop-out, but it seems to me that LibAV has not functions to perform this.
 	//	so just use the BasicPixelConverter.

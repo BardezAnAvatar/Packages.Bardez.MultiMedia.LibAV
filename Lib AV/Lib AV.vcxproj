@@ -171,7 +171,7 @@
     <ClInclude Include="Stream Processing Info.h" />
     <ClInclude Include="LibAV Picture Detail.h" />
     <ClInclude Include="SW Scale.h" />
-    <ClInclude Include="SWScale Pixel Converter.h" />
+    <ClInclude Include="LibAV Pixel Converter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AVPicture Notes.txt" />
@@ -199,7 +199,7 @@
     <ClCompile Include="Stream Processing Buffer.cpp" />
     <ClCompile Include="Stream Processing Info.cpp" />
     <ClCompile Include="SW Scale.cpp" />
-    <ClCompile Include="SWScale Pixel Converter.cpp" />
+    <ClCompile Include="LibAV Pixel Converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Basic Structures\Basic Structures.csproj">

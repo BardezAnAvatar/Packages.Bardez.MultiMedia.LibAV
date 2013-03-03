@@ -19,7 +19,7 @@ namespace Bardez
 			namespace LibAV
 			{
 				/// <summary>Pixel converter that utilizes SWScale from LibAV</summary>
-				public ref class SWScalePixelConverter : IPixelConverter
+				public ref class LibAVPixelConverter : IPixelConverter
 				{
 				#pragma region IPixelConverter implementation
 				public:
