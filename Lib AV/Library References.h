@@ -8,6 +8,7 @@
 #pragma comment(lib, "avcodec.lib")
 #pragma comment(lib, "avutil.lib")
 #pragma comment(lib, "swscale.lib")
+#pragma comment(lib, "avfilter.lib")
 
 #endif
 
