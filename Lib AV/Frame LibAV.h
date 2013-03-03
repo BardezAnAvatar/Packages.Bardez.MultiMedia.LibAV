@@ -41,6 +41,16 @@ namespace Bardez
 
 					/// <summary>Reference to the streaming metadata info</summary>
 					StreamingMetadata^ metadataStreaming;
+
+					/// <summary>Managed copy of the data</summary>
+					///	<remarks>
+					///		I'd love to wrap the native pointer in an UnmanagedMemoryStream.
+					///		Reality, however, requires a copy; the codec might expose the internal
+					///		buffer rather than a copy, and the codec always unallocates the data.
+					///		So, I could have a native copy if I absolutely required it, but then, why not just go
+					///		with a managed copy instead?
+					///	</remarks>
+					array<Byte>^ frameData;
 				#pragma endregion
 
 
@@ -69,9 +79,9 @@ namespace Bardez
 				#pragma region IMultimediaStreamingFrame Properties
 				public:
 					/// <summary>The streaming metadata info</summary>
-					virtual property Bardez::Projects::Multimedia::MediaBase::Frame::StreamingMetadata^ StreamingMetadata
+					virtual property StreamingMetadata^ MetadataStreaming
 					{
-						Bardez::Projects::Multimedia::MediaBase::Frame::StreamingMetadata^ get();
+						StreamingMetadata^ get();
 					}
 				#pragma endregion
 
@@ -81,7 +91,7 @@ namespace Bardez
 					/// <summary>The streaming metadata info</summary>
 					virtual property Stream^ Data
 					{
-						Stream^ get() abstract;
+						Stream^ get();
 					}
 				#pragma endregion
 
@@ -107,6 +117,14 @@ namespace Bardez
 				internal:
 					/// <summary>Destructor logic, disposes the object</summary>
 					virtual void DisposeUnmanaged();
+				#pragma endregion
+
+
+				#pragma region Helper methods
+				protected:
+					/// <summary>Copies the data from <see cref="source" /> to <see cref="frameData" /></summary>
+					/// <remarks>Data is treated differently between Audio and Video and Subtitle</remarks>
+					virtual void CopyData(AVFrame* source) abstract;
 				#pragma endregion
 				};
 			}
