@@ -57,7 +57,7 @@ namespace Bardez
 					/// <summary>Definition constructor</summary>
 					/// <param name="source">Source unmanaged frame to read from</param>
 					/// <param name="packet">Packet to read timestamps from</param>
-					/// <param name="stream">Source stream for this Frame</summary>
+					/// <param name="stream">Source stream for this Frame</param>
 					FrameLibAVVideo(AVFrame* source, AVPacket* packet, AVStream* stream);
 				#pragma endregion
 
@@ -80,7 +80,8 @@ namespace Bardez
 
 				#pragma region Helper methods
 				protected:
-					/// <summary>Copies the data from <see cref="source" /> to <see cref="frameData" /></summary>
+					/// <summary>Copies the data from to <see cref="frameData" /></summary>
+					/// <param name="source">Source AVFrame to copy data from</param>
 					/// <remarks>Data is treated differently between Audio and Video and Subtitle</remarks>
 					virtual void CopyData(AVFrame* source) override;
 				#pragma endregion

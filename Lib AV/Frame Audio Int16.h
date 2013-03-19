@@ -54,7 +54,7 @@ namespace Bardez
 					void CopyData(AVFrame* source);
 
 					/// <summary>Computes the size of an audio sample based on its audio format</summary>
-					/// <param name="format">Format of the audio sample from a source frame</format>
+					/// <param name="format">Format of the audio sample from a source frame</param>
 					static Int32 SampleSize(Int32 format);
 				#pragma endregion
 				};

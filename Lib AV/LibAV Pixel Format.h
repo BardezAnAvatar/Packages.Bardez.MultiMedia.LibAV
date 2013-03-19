@@ -17,7 +17,7 @@ namespace Bardez
 					/// <summary>None</summary>
 					PIX_FMT_NONE = -1,
 
-					/// <summary>planar YUV 4:2:0, 12bpp, (1 Cr & Cb sample per 2x2 Y samples)</summary>
+					/// <summary>planar YUV 4:2:0, 12bpp, (1 Cr &amp; Cb sample per 2x2 Y samples)</summary>
 					PIX_FMT_YUV420P,
 
 					/// <summary>packed YUV 4:2:2, 16bpp, Y0 Cb Y1 Cr</summary>
@@ -29,16 +29,16 @@ namespace Bardez
 					/// <summary>packed RGB 8:8:8, 24bpp, BGRBGR...</summary>
 					PIX_FMT_BGR24,
 
-					/// <summary>planar YUV 4:2:2, 16bpp, (1 Cr & Cb sample per 2x1 Y samples)</summary>
+					/// <summary>planar YUV 4:2:2, 16bpp, (1 Cr &amp; Cb sample per 2x1 Y samples)</summary>
 					PIX_FMT_YUV422P,
 
-					/// <summary>planar YUV 4:4:4, 24bpp, (1 Cr & Cb sample per 1x1 Y samples)</summary>
+					/// <summary>planar YUV 4:4:4, 24bpp, (1 Cr &amp; Cb sample per 1x1 Y samples)</summary>
 					PIX_FMT_YUV444P,
 
-					/// <summary>planar YUV 4:1:0,  9bpp, (1 Cr & Cb sample per 4x4 Y samples)</summary>
+					/// <summary>planar YUV 4:1:0,  9bpp, (1 Cr &amp; Cb sample per 4x4 Y samples)</summary>
 					PIX_FMT_YUV410P,
 
-					/// <summary>planar YUV 4:1:1, 12bpp, (1 Cr & Cb sample per 4x1 Y samples)</summary>
+					/// <summary>planar YUV 4:1:1, 12bpp, (1 Cr &amp; Cb sample per 4x1 Y samples)</summary>
 					PIX_FMT_YUV411P,
 
 					/// <summary>Y        ,  8bpp</summary>
@@ -116,13 +116,13 @@ namespace Bardez
 					/// <summary>Y        , 16bpp, little-endian</summary>
 					PIX_FMT_GRAY16LE,
 
-					/// <summary>planar YUV 4:4:0 (1 Cr & Cb sample per 1x2 Y samples)</summary>
+					/// <summary>planar YUV 4:4:0 (1 Cr &amp; Cb sample per 1x2 Y samples)</summary>
 					PIX_FMT_YUV440P,
 
 					/// <summary>planar YUV 4:4:0 full scale (JPEG), deprecated in favor of PIX_FMT_YUV440P and setting color_range</summary>
 					PIX_FMT_YUVJ440P,
 
-					/// <summary>planar YUV 4:2:0, 20bpp, (1 Cr & Cb sample per 2x2 Y & A samples)</summary>
+					/// <summary>planar YUV 4:2:0, 20bpp, (1 Cr &amp; Cb sample per 2x2 Y &amp; A samples)</summary>
 					PIX_FMT_YUVA420P,
 
 					/// <summary>H.264 HW decoding with VDPAU, data[0] contains a vdpau_render_state struct which contains the bitstream of the slices as well as various fields extracted from headers</summary>
@@ -179,22 +179,22 @@ namespace Bardez
 					/// <summary>HW decoding through VA API, Picture.data[3] contains a vaapi_render_state struct which contains the bitstream of the slices as well as various fields extracted from headers</summary>
 					PIX_FMT_VAAPI_VLD,
 
-					/// <summary>planar YUV 4:2:0, 24bpp, (1 Cr & Cb sample per 2x2 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:0, 24bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), little-endian</summary>
 					PIX_FMT_YUV420P16LE,
 
-					/// <summary>planar YUV 4:2:0, 24bpp, (1 Cr & Cb sample per 2x2 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:0, 24bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), big-endian</summary>
 					PIX_FMT_YUV420P16BE,
 
-					/// <summary>planar YUV 4:2:2, 32bpp, (1 Cr & Cb sample per 2x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:2, 32bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV422P16LE,
 
-					/// <summary>planar YUV 4:2:2, 32bpp, (1 Cr & Cb sample per 2x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:2, 32bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV422P16BE,
 
-					/// <summary>planar YUV 4:4:4, 48bpp, (1 Cr & Cb sample per 1x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:4:4, 48bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV444P16LE,
 
-					/// <summary>planar YUV 4:4:4, 48bpp, (1 Cr & Cb sample per 1x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:4:4, 48bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV444P16BE,
 
 					/// <summary>MPEG4 HW decoding with VDPAU, data[0] contains a vdpau_render_state struct which contains the bitstream of the slices as well as various fields extracted from headers</summary>
@@ -229,40 +229,40 @@ namespace Bardez
 					//If you want to support multiple bit depths, then using PIX_FMT_YUV420P16* with the bpp stored seperately
 					//is better
 
-					/// <summary>planar YUV 4:2:0, 13.5bpp, (1 Cr & Cb sample per 2x2 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:0, 13.5bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), big-endian</summary>
 					PIX_FMT_YUV420P9BE,
 
-					/// <summary>planar YUV 4:2:0, 13.5bpp, (1 Cr & Cb sample per 2x2 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:0, 13.5bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), little-endian</summary>
 					PIX_FMT_YUV420P9LE,
 
-					/// <summary>planar YUV 4:2:0, 15bpp, (1 Cr & Cb sample per 2x2 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:0, 15bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), big-endian</summary>
 					PIX_FMT_YUV420P10BE,
 
-					/// <summary>planar YUV 4:2:0, 15bpp, (1 Cr & Cb sample per 2x2 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:0, 15bpp, (1 Cr &amp; Cb sample per 2x2 Y samples), little-endian</summary>
 					PIX_FMT_YUV420P10LE,
 
-					/// <summary>planar YUV 4:2:2, 20bpp, (1 Cr & Cb sample per 2x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:2, 20bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV422P10BE,
 
-					/// <summary>planar YUV 4:2:2, 20bpp, (1 Cr & Cb sample per 2x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:2, 20bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV422P10LE,
 
-					/// <summary>planar YUV 4:4:4, 27bpp, (1 Cr & Cb sample per 1x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:4:4, 27bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV444P9BE,
 
-					/// <summary>planar YUV 4:4:4, 27bpp, (1 Cr & Cb sample per 1x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:4:4, 27bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV444P9LE,
 
-					/// <summary>planar YUV 4:4:4, 30bpp, (1 Cr & Cb sample per 1x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:4:4, 30bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV444P10BE,
 
-					/// <summary>planar YUV 4:4:4, 30bpp, (1 Cr & Cb sample per 1x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:4:4, 30bpp, (1 Cr &amp; Cb sample per 1x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV444P10LE,
 
-					/// <summary>planar YUV 4:2:2, 18bpp, (1 Cr & Cb sample per 2x1 Y samples), big-endian</summary>
+					/// <summary>planar YUV 4:2:2, 18bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), big-endian</summary>
 					PIX_FMT_YUV422P9BE,
 
-					/// <summary>planar YUV 4:2:2, 18bpp, (1 Cr & Cb sample per 2x1 Y samples), little-endian</summary>
+					/// <summary>planar YUV 4:2:2, 18bpp, (1 Cr &amp; Cb sample per 2x1 Y samples), little-endian</summary>
 					PIX_FMT_YUV422P9LE,
 
 
@@ -314,7 +314,7 @@ namespace Bardez
 					/// <summary>packed BGR 8:8:8, 32bpp, BGR0BGR0...</summary>
 					PIX_FMT_BGR0,
 
-					/// <summary>planar YUV 4:4:4 32bpp, (1 Cr & Cb sample per 1x1 Y & A samples)</summary>
+					/// <summary>planar YUV 4:4:4 32bpp, (1 Cr &amp; Cb sample per 1x1 Y &amp; A samples)</summary>
 					PIX_FMT_YUVA444P,
 				};
 			}

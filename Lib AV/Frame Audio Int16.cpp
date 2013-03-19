@@ -21,7 +21,7 @@ void FrameAudioInt16::CopyData(AVFrame* source)
 }
 
 /// <summary>Computes the size of an audio sample based on its audio format</summary>
-/// <param name="format">Format of the audio sample from a source frame</format>
+/// <param name="format">Format of the audio sample from a source frame</param>
 Int32 FrameAudioInt16::SampleSize(Int32 format)
 {
 	Int32 sampleByteSize;

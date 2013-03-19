@@ -33,7 +33,7 @@ Int32 FrameLibAVAudio::FrameDataSize::get()
 /// <summary>Definition constructor</summary>
 /// <param name="source">Source unmanaged frame to read from</param>
 /// <param name="packet">Packet to read timestamps from</param>
-/// <param name="stream">Source stream for this Frame</summary>
+/// <param name="stream">Source stream for this Frame</param>
 FrameLibAVAudio::FrameLibAVAudio(AVFrame* source, AVPacket* packet, AVStream* stream) : FrameLibAV(source, packet, stream)
 {
 	this->sampleCount = source->nb_samples;
@@ -73,6 +73,7 @@ WaveFormatEx^ FrameLibAVAudio::GetWaveFormat()
 
 #pragma region Helper methods
 /// <summary>Copies the data from <see cref="source" /> to <see cref="frameData" /></summary>
+/// <param name="source">Source AVFrame to copy data from</param>
 /// <remarks>Data is treated differently between Audio and Video and Subtitle</remarks>
 void FrameLibAVAudio::CopyData(AVFrame* source)
 {

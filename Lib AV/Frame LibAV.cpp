@@ -49,7 +49,7 @@ Stream^ FrameLibAV::Data::get()
 /// <summary>Definition constructor</summary>
 /// <param name="source">Source unmanaged frame to read from</param>
 /// <param name="packet">Packet to read timestamps from</param>
-/// <param name="stream">Source stream for this Frame</summary>
+/// <param name="stream">Source stream for this Frame</param>
 FrameLibAV::FrameLibAV(AVFrame* source, AVPacket* packet, AVStream* stream)
 {
 	//This is the fundamental unit of time (in seconds) in terms of which frame

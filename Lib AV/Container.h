@@ -176,7 +176,7 @@ namespace Bardez
 					/// <param name="packet">Packet which contains initial data</param>
 					/// <returns>A managed FrameSubtitleText instance</returns>
 					/// <remarks>
-					///		Copied largely from httr://www.digipedia.pl/usenet/thread/16949/6631/
+					///		Copied largely from http://www.digipedia.pl/usenet/thread/16949/6631/
 					///		and definitely derived from that thread
 					/// </remarks>
 					FrameSubtitleText^ DecodeSubtitleText(AVPacket* packet);

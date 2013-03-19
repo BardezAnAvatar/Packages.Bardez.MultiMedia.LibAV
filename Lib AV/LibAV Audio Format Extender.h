@@ -31,7 +31,7 @@ namespace Bardez
 				internal:
 					/// <summary>Extension method to convert <see cref="AudioDataFormat" /> to <see cref="AVSampleFormat" /></summary>
 					/// <param name="sourceFormat">Source audio data format</param>
-					/// <param name="bits">Number of bits per sample</bits>
+					/// <param name="bits">Number of bits per sample</param>
 					[ExtensionAttribute]
 					static AVSampleFormat ToAVSampleFormat(AudioDataFormat sourceFormat, Int32 bits);
 					

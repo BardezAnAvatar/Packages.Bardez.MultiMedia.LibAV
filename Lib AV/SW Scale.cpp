@@ -79,8 +79,8 @@ void SWScale::UnpackPalettedData8BitTo32Bit(array<Byte>^ source, array<Byte>^ de
 }
 
 /// <summary>Performs the constructed SW Scale transformation associated with this context</summary>
-/// <param name="source">Source picture to read source data from</summary>
-/// <param name="destination">Destination picture to write source data to</summary>
+/// <param name="source">Source picture to read source data from</param>
+/// <param name="destination">Destination picture to write source data to</param>
 /// <returns>The height of the output image</returns>
 Int32 SWScale::Transform(LibAVPicture^ source, LibAVPicture^ destination)
 {
@@ -90,8 +90,8 @@ Int32 SWScale::Transform(LibAVPicture^ source, LibAVPicture^ destination)
 }
 
 /// <summary>Performs the constructed SW Scale transformation associated with this context</summary>
-/// <param name="sourceData">Source data to read from</summary>
-/// <param name="destData">Destination Stream to write data to</summary>
+/// <param name="sourceData">Source data to read from</param>
+/// <param name="destData">Destination Stream to write data to</param>
 /// <returns>The height of the output image</returns>
 Int32 SWScale::Transform(MemoryStream^ sourceData, [System::Runtime::InteropServices::Out] MemoryStream^% destData)
 {

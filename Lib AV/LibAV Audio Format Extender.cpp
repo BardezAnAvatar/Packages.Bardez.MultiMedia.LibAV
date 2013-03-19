@@ -10,7 +10,7 @@ using namespace Bardez::Projects::Multimedia::LibAV;
 #pragma region Conversion
 /// <summary>Extension method to convert <see cref="AudioDataFormat" /> to <see cref="AVSampleFormat" /></summary>
 /// <param name="sourceFormat">Source audio data format</param>
-/// <param name="bits">Number of bits per sample</bits>
+/// <param name="bits">Number of bits per sample</param>
 AVSampleFormat LibAVAudioFormatExtender::ToAVSampleFormat(AudioDataFormat sourceFormat, Int32 bits)
 {
 	AVSampleFormat outputFormat = AV_SAMPLE_FMT_NONE;

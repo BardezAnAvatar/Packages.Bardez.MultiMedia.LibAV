@@ -38,7 +38,7 @@ ImageMetadata^ FrameLibAVVideo::MetadataImage::get()
 /// <summary>Definition constructor</summary>
 /// <param name="source">Source unmanaged frame to read from</param>
 /// <param name="packet">Packet to read timestamps from</param>
-/// <param name="stream">Source stream for this Frame</summary>
+/// <param name="stream">Source stream for this Frame</param>
 FrameLibAVVideo::FrameLibAVVideo(AVFrame* source, AVPacket* packet, AVStream* stream) : FrameLibAV(source, packet, stream)
 {
 	Int32 height = stream->codec->height;
@@ -101,6 +101,7 @@ MemoryStream^ FrameLibAVVideo::GetFormattedData(IPixelConverter^ pixelConverter,
 
 #pragma region Helper methods
 /// <summary>Copies the data from <see cref="source" /> to <see cref="frameData" /></summary>
+/// <param name="source">Source AVFrame to copy data from</param>
 /// <remarks>Data is treated differently between Audio and Video and Subtitle</remarks>
 void FrameLibAVVideo::CopyData(AVFrame* source)
 {
