@@ -11,8 +11,8 @@
 using namespace System;
 using namespace System::IO;
 using namespace Bardez::Projects::Multimedia::LibAV;
+using namespace Bardez::Projects::Multimedia::MediaBase::Data::Pixels;
 using namespace Bardez::Projects::Multimedia::MediaBase::Frame::Image;
-using namespace Bardez::Projects::Multimedia::MediaBase::Video::Pixels;
 
 
 #pragma region IPixelConverter implementation
