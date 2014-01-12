@@ -31,6 +31,19 @@ ImageMetadata^ FrameLibAVVideo::MetadataImage::get()
 {
 	return this->metadataImage;
 }
+
+
+/// <summary>Gets a sub-image of the current image</summary>
+/// <param name="x">Source X position</param>
+/// <param name="y">Source Y position</param>
+/// <param name="width">Width of sub-image</param>
+/// <param name="height">Height of sub-image</param>
+/// <returns>The requested sub-image</returns>
+/// <remarks>The generated point of origin should be (0,0).</remarks>
+IMultimediaImageFrame^ FrameLibAVVideo::GetSubImage(Int32 x, Int32 y, Int32 width, Int32 height)
+{
+	return ImageManipulation::GetSubImage(this->Data, this->MetadataImage, x, y, width, height);
+}
 #pragma endregion
 
 
