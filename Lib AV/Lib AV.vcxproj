@@ -51,9 +51,9 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Configuration)\</IntDir>
-    <LibraryPath>N:\Code\Video\ffmpeg\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\lib\ffmpeg\lib;$(LibraryPath)</LibraryPath>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>\Code\Video\msinttypes-r26;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\lib\msinttypes-r26;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
