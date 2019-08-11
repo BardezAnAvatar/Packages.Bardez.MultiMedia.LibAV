@@ -183,8 +183,18 @@
   <ItemGroup>
     <None Include="AVPicture Notes.txt" />
     <None Include="Generic notes.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Basic Structures">
+      <HintPath>..\packages\Bardez.BasicStructures.1.0.0\lib\net40\Basic Structures.dll</HintPath>
+    </Reference>
+    <Reference Include="Media Base">
+      <HintPath>..\packages\Bardez.MultiMedia.MediaBase.1.0.0\lib\net40\Media Base.dll</HintPath>
+    </Reference>
+    <Reference Include="ReusableCode">
+      <HintPath>..\packages\Bardez.ReusableCode.1.0.0\lib\net40\ReusableCode.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -208,14 +218,6 @@
     <ClCompile Include="Stream Processing Info.cpp" />
     <ClCompile Include="SW Scale.cpp" />
     <ClCompile Include="LibAV Pixel Converter.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Entities\Basic Structures\Basic Structures.csproj">
-      <Project>{257201a0-0b65-4ea0-ac04-0b8005aecc37}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Entities\Media Base\Media Base.csproj">
-      <Project>{31ca90a7-1628-493b-a99b-8b9f6899158f}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
