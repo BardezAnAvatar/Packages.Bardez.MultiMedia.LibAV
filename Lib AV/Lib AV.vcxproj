@@ -53,9 +53,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\$(Configuration)\</OutDir>
     <IntDir>tmp\$(Configuration)\</IntDir>
-    <LibraryPath>$(SolutionDir)\lib\ffmpeg\lib;$(LibraryPath)</LibraryPath>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>$(SolutionDir)\lib\msinttypes-r26;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
