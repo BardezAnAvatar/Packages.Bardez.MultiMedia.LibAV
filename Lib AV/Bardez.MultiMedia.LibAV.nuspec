@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Bardez.MultiMedia.LibAV</id>
+    <version>1.0.0</version>
+    <title>Bardez.MultiMedia.LibAV</title>
+    <authors>Erik "Bardez" Frantz</authors>
+    <owners>Erik "Bardez" Frantz</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>LibAV .NET integration</description>
+    <summary>.NET integration with LibAV/ffmpeg</summary>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <language>en-GB</language>
+    <tags>Multimedia libAV ffmpeg</tags>
+    <dependencies>
+      <dependency id="Bardez.BasicStructures" version="1.0.0" />
+      <dependency id="Bardez.MultiMedia.MediaBase" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="**/*.h" target="src/" />
+    <file src="**/*.cpp" target="src/" />
+    <file src="bin\Win32\Debug\Lib AV.*" target="runtimes/win7-x86/lib/net40/Debug" />
+    <file src="bin\Win32\Release\Lib AV.*" target="runtimes/win7-x86/lib/net40/Release" />
+    <file src="bin\x64\Debug\Lib AV.*" target="runtimes/win7-x64/lib/net40/Debug" />
+    <file src="bin\x64\Release\Lib AV.*" target="runtimes/win7-x64/lib/net40/Release" />
+  </files>
+</package>

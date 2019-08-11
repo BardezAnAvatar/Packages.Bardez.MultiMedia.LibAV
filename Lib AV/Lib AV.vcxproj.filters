@@ -132,6 +132,7 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="packages.config" />
+    <None Include="Bardez.MultiMedia.LibAV.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LibAV Picture.cpp">
