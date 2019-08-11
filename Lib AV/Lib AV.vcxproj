@@ -106,67 +106,7 @@
     <ClInclude Include="LibAV Filter Graph VFlip.h" />
     <ClInclude Include="LibAV Filter Graph.h" />
     <ClInclude Include="LibAV Picture.h" />
-    <ClInclude Include="libavcodec\avcodec.h" />
-    <ClInclude Include="libavcodec\avfft.h" />
-    <ClInclude Include="libavcodec\dxva2.h" />
-    <ClInclude Include="libavcodec\vaapi.h" />
-    <ClInclude Include="libavcodec\vda.h" />
-    <ClInclude Include="libavcodec\vdpau.h" />
-    <ClInclude Include="libavcodec\version.h" />
-    <ClInclude Include="libavcodec\xvmc.h" />
-    <ClInclude Include="libavfilter\avfilter.h" />
-    <ClInclude Include="libavfilter\avfiltergraph.h" />
-    <ClInclude Include="libavfilter\buffersrc.h" />
-    <ClInclude Include="libavfilter\drawutils.h" />
-    <ClInclude Include="libavfilter\gradfun.h" />
-    <ClInclude Include="libavfilter\internal.h" />
-    <ClInclude Include="libavfilter\version.h" />
-    <ClInclude Include="libavfilter\vsrc_buffer.h" />
-    <ClInclude Include="libavfilter\yadif.h" />
-    <ClInclude Include="libavformat\avformat.h" />
-    <ClInclude Include="libavformat\avio.h" />
-    <ClInclude Include="libavformat\version.h" />
-    <ClInclude Include="libavutil\adler32.h" />
-    <ClInclude Include="libavutil\aes.h" />
-    <ClInclude Include="libavutil\attributes.h" />
-    <ClInclude Include="libavutil\audioconvert.h" />
-    <ClInclude Include="libavutil\avassert.h" />
-    <ClInclude Include="libavutil\avconfig.h" />
-    <ClInclude Include="libavutil\avstring.h" />
-    <ClInclude Include="libavutil\avutil.h" />
-    <ClInclude Include="libavutil\base64.h" />
-    <ClInclude Include="libavutil\bprint.h" />
-    <ClInclude Include="libavutil\bswap.h" />
-    <ClInclude Include="libavutil\common.h" />
-    <ClInclude Include="libavutil\cpu.h" />
-    <ClInclude Include="libavutil\crc.h" />
-    <ClInclude Include="libavutil\dict.h" />
-    <ClInclude Include="libavutil\error.h" />
-    <ClInclude Include="libavutil\eval.h" />
-    <ClInclude Include="libavutil\fifo.h" />
-    <ClInclude Include="libavutil\file.h" />
-    <ClInclude Include="libavutil\imgutils.h" />
-    <ClInclude Include="libavutil\intfloat.h" />
-    <ClInclude Include="libavutil\intfloat_readwrite.h" />
-    <ClInclude Include="libavutil\intreadwrite.h" />
-    <ClInclude Include="libavutil\lfg.h" />
-    <ClInclude Include="libavutil\log.h" />
-    <ClInclude Include="libavutil\lzo.h" />
-    <ClInclude Include="libavutil\mathematics.h" />
-    <ClInclude Include="libavutil\md5.h" />
-    <ClInclude Include="libavutil\mem.h" />
-    <ClInclude Include="libavutil\opt.h" />
-    <ClInclude Include="libavutil\parseutils.h" />
-    <ClInclude Include="libavutil\pixdesc.h" />
-    <ClInclude Include="libavutil\pixfmt.h" />
-    <ClInclude Include="libavutil\random_seed.h" />
-    <ClInclude Include="libavutil\rational.h" />
-    <ClInclude Include="libavutil\samplefmt.h" />
-    <ClInclude Include="libavutil\sha.h" />
-    <ClInclude Include="libavutil\timecode.h" />
-    <ClInclude Include="libavutil\timestamp.h" />
     <ClInclude Include="Library References.h" />
-    <ClInclude Include="libswscale\swscale.h" />
     <ClInclude Include="LibAV Pixel Format.h" />
     <ClInclude Include="Media Type.h" />
     <ClInclude Include="LibAV Pixel Format Extender.h" />
@@ -221,5 +161,12 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\ffmpeg.0.7.12\build\native\ffmpeg.targets" Condition="Exists('..\packages\ffmpeg.0.7.12\build\native\ffmpeg.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ffmpeg.0.7.12\build\native\ffmpeg.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ffmpeg.0.7.12\build\native\ffmpeg.targets'))" />
+  </Target>
 </Project>
