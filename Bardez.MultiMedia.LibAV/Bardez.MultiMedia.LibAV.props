@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="Bardez.MultiMedia.LibAV" Condition="('$(Platform)' == 'x86') And '$(Configuration)' == 'Debug'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\Debug\Bardez.MultiMedia.LibAV.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.MultiMedia.LibAV" Condition="('$(Platform)' == 'x86') And '$(Configuration)' == 'Release'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x86\Release\Bardez.MultiMedia.LibAV.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.MultiMedia.LibAV" Condition="('$(Platform)' == 'x64') And '$(Configuration)' == 'Debug'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\Debug\Bardez.MultiMedia.LibAV.dll</HintPath>
+    </Reference>
+    <Reference Include="Bardez.MultiMedia.LibAV" Condition="('$(Platform)' == 'x64') And '$(Configuration)' == 'Release'">
+      <HintPath>$(MSBuildThisFileDirectory)..\x64\Release\Bardez.MultiMedia.LibAV.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+AVPicture is the base data model in C for AVFrame. It handles data with a single 'head' pointer,
+and additionally has an array for the total Byte Width of a single row.
+
+The data array stores the head pointerat index 0. When it is dealing with RGB data or similar,
+there is only one array, with row width calculated. On planar data (such as YUV), the data is
+stored in a single array, but additional index pointers are calculated to point to the start of
+the plan in the data array pointed to by the head pointer. Thus, all the Y data is compacted
+and stoed, then the U and then the V (all in one array), then pointers to the start of U and V
+are stored in the additional data indeces. Row widths are calculated on a per-plane basis.
+
+avpicture_free(AVPicture*) simply breaks down to the C free(pointer) method.
+
+avpicture_alloc will allocate memory for the AVPicture in its data arrays (interestingly, it will
+only use up to 4 planes, whereas the struct uses 8).
+
+avpicture_fill will take an existing data array pointer and fill in the appropriate data pointers;
+it will calculate planar offsets from the passes in data head. It will not copy nor allocate memory,
+just copying the passed in pointer.
