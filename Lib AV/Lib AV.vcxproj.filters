@@ -133,6 +133,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Bardez.MultiMedia.LibAV.nuspec" />
+    <None Include="Bardez.MultiMedia.LibAV.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LibAV Picture.cpp">

@@ -192,6 +192,7 @@
   <ItemGroup>
     <None Include="AVPicture Notes.txt" />
     <None Include="Bardez.MultiMedia.LibAV.nuspec" />
+    <None Include="Bardez.MultiMedia.LibAV.props" />
     <None Include="Generic notes.txt" />
     <None Include="packages.config" />
   </ItemGroup>
