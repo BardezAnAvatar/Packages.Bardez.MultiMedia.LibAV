@@ -21,10 +21,10 @@
   <files>
     <file src="**/*.h" target="src/" />
     <file src="**/*.cpp" target="src/" />
-    <file src="bin\Win32\Debug\Lib AV.*" target="build/x86/Debug" />
-    <file src="bin\Win32\Release\Lib AV.*" target="build/x86/Release" />
-    <file src="bin\x64\Debug\Lib AV.*" target="build/x64/Debug" />
-    <file src="bin\x64\Release\Lib AV.*" target="build/x64/Release" />
+    <file src="bin\Win32\Debug\Bardez.MultiMedia.LibAV.*" target="build/x86/Debug" />
+    <file src="bin\Win32\Release\Bardez.MultiMedia.LibAV.*" target="build/x86/Release" />
+    <file src="bin\x64\Debug\Bardez.MultiMedia.LibAV.*" target="build/x64/Debug" />
+    <file src="bin\x64\Release\Bardez.MultiMedia.LibAV.*" target="build/x64/Release" />
     <file src="Bardez.MultiMedia.LibAV.props" target="build\net40" />
   </files>
 </package>
