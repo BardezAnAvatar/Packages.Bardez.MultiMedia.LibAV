@@ -211,6 +211,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Codec Info.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Frame Audio Int16.cpp" />
